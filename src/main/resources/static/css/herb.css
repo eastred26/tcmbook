@@ -103,9 +103,11 @@ body {
     margin-left: 20px;
     display: inline-block;
     width: 400px;
+    white-space: pre-wrap;
 }
 .box-content span.no-pic {
     width: 760px;
+    white-space: pre-wrap;
 }
 .box-content .content-title {
     width:155px;

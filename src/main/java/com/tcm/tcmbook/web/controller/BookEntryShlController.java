@@ -1,10 +1,10 @@
 package com.tcm.tcmbook.web.controller;
 
 
-import com.tcm.tcmbook.pojo.BookEntry;
+import com.tcm.tcmbook.pojo.BookEntryShl;
 import com.tcm.tcmbook.service.PrescriptionService;
 import com.tcm.tcmbook.utils.stringclear;
-import com.tcm.tcmbook.service.BookEntryService;
+import com.tcm.tcmbook.service.BookEntryShlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,18 +15,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Controller
-public class BookEntryController {
+public class BookEntryShlController {
     @Autowired
-    private BookEntryService bookEntryService;
+    private BookEntryShlService bookEntryService;
     @Autowired
     private PrescriptionService prescriptionService;
 
-    @RequestMapping("/bookEntry/{id}")
+    @RequestMapping("/bookEntryS/{id}")
     String home(Model model, @PathVariable int id) {
-        BookEntry bookEntry = bookEntryService.getById(id);
-        model.addAttribute("title",stringclear.clear(bookEntry.getTitle()));
+        BookEntryShl bookEntry = bookEntryService.getById(id);
+        model.addAttribute("title",stringclear.clear2(bookEntry.getTitle()));
         model.addAttribute("tiyao",stringclear.clear(bookEntry.getTiyao()));
-        model.addAttribute("yuanwen",stringclear.clear(bookEntry.getYuanwen()));
+        model.addAttribute("yuanwen",stringclear.clear2(bookEntry.getYuanwen()));
         model.addAttribute("cijie",stringclear.clear(bookEntry.getCijie()));
         model.addAttribute("shiyi",stringclear.clear(bookEntry.getShiyi()));
         model.addAttribute("xuanzhu",stringclear.clear(bookEntry.getXuanzhu()));
@@ -46,7 +46,6 @@ public class BookEntryController {
             model.addAttribute("fangyao_ids",fangyao_ids);
             model.addAttribute("fangyao_id_flag","1");
         }
-
         model.addAttribute("fangjie",stringclear.clear(bookEntry.getFangjie()));
         model.addAttribute("fangyi",stringclear.clear(bookEntry.getFangyi()));
         model.addAttribute("fanglunxuan",stringclear.clear(bookEntry.getFanglunxuan()));
@@ -55,6 +54,6 @@ public class BookEntryController {
         model.addAttribute("anyu",stringclear.clear(bookEntry.getAnyu()));
         model.addAttribute("xiandaiyanjiu",stringclear.clear(bookEntry.getXiandaiyanjiu()));
         model.addAttribute("xiaojie",stringclear.clear(bookEntry.getXiaojie()));
-        return "BookEntry";
+        return "BookEntry_shl";
     }
 }

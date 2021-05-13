@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <link th:href="@{/css/search_area.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/herb.css}" rel="stylesheet">
+    <title>中药成分结构数据专题-条目</title>
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+<div class="content-container">
+    <div class="sub-nav">
+        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../home">中药成分结构数据专题</a>
+        &gt;条目
+    </div>
+    <div class="detail-head" id="tcm_detail_head" th:text="金匮要略条目：">
+    </div>
+    <div class="basic-content">
+        <div class="new-title">
+            <span class="title-icon"></span>
+            <span class="title-name">基本信息</span>
+        </div>
+        <div class="basic-info-box">
+            <div class="box-content" id="yuanwen_box">
+                <div class="content-title">【原文】</div>
+                <span class="no-pic" id="yuanwen_content" th:text="${yuanwen}"></span>
+            </div>
+            <div class="box-content" id="cijie_box">
+                <div class="content-title">【词语注解】</div>
+                <span class="no-pic" id="cijie_content" th:text="${ciyuzhujie}"></span>
+            </div>
+            <div class="box-content" id="tiyao_box">
+                <div class="content-title">【经义阐释】</div>
+                <span class="no-pic" id="tiyao_content" th:text="${jingyichanshi}"></span>
+            </div>
+            <div class="box-content" id="shiyi_box">
+                <div class="content-title">【方药评析】</div>
+                <span class="no-pic" id="shiyi_content" th:text="${fangyaopingxi}"></span>
+            </div>
+            <span th:hidden="true" id="fangyao_id_content" th:text="${fangyao_id_flag}"></span>
+            <div class="box-content" id="fangyao_id_box">
+                <span>【方药链接】</span>
+                <span class="no-pic" th:each="fangyao_id : ${fangyao_ids}" >
+                    <a th:href="${fangyao_id.key}" th:text="${fangyao_id.value}"></a>
+                </span>
+            </div>
+            <div class="box-content" id="xuanzhu_box">
+                <div class="content-title">【文献选录】</div>
+                <span class="no-pic"  id="xuanzhu_content" th:text="${wenxianxuanlu}"></span>
+            </div>
+            <div class="box-content" id="pingshu_box">
+                <div class="content-title">【临床应用】</div>
+                <span class="no-pic"  id="pingshu_content" th:text="${linchuangyingyong}"></span>
+            </div>
+            <div class="box-content" id="zhifa_box">
+                <div class="content-title">【现代研究】</div>
+                <span class="no-pic"  id="zhifa_content" th:text="${xiandaiyanjiu}"></span>
+            </div>
+
+
+            </span>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer">footer</div>
+    <script th:src="@{/js/jquery-3.2.1/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/datatable/jquery.dataTables.js}" type="text/javascript"></script>
+    <script th:src="@{/js/BookEntry_shl.js}" type="text/javascript"></script>
+</body>
+</html>
