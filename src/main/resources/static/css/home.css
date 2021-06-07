@@ -17,7 +17,7 @@ a:active {
     color: #fff;
 }
 .content-container {
-    min-height: 450px;
+    height: 5100px;
     width: 1200px;
     margin: 0 auto;
     padding-bottom: 200px;
@@ -151,9 +151,30 @@ a:active {
     margin-bottom: -10px;
     display: inline-block;
 }
-.med-name{
-    color:#000000;
-}
+.bookcont{
+    margin-top:9px;
+    border-bottom:1px
+    solid #DAD9D1;
+    overflow:hidden;
+    padding-bottom:15px;
+    float:left;
+    width:250px;
+    height: 61px;
+    margin-left:20px;}
+.bookcont a{ margin-left:10px; font-size:15px; float:left;}
+
+.bookcont1{
+    margin-top:9px;
+    border-bottom:1px
+    solid #DAD9D1;
+    overflow:hidden;
+    padding-bottom:15px;
+    float:left;
+    width:250px;
+    height: 38px;
+    margin-left:20px;}
+.bookcont1 a{ margin-left:10px; font-size:15px; float:left;}
+
 .alphabet-med{
     box-shadow: 0 0 0 1px rgba(0,0,0,.1);
     padding: 10px;

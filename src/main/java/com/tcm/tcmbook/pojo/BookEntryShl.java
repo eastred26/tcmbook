@@ -17,8 +17,6 @@ public class BookEntryShl {
     private String zhifa;
     private String fangyao;
     private String fangyao_id;
-    private String fangjie;
-    private String fangyi;
     private String fanglunxuan;
     private String dianping;
     private String linchuangyingyong;

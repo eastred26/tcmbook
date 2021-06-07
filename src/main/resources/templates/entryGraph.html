@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
+    <script th:src="@{/js/vis-network.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/jquery-3.2.1/jquery.min.js}" type="text/javascript"></script>
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <link th:href="@{/css/search_area.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+        #infobar {
+            width: 600px;
+            height: 660px;
+            border: 1px solid lightgray;
+        }
+    </style>
+    <title>PrescriptionGraph</title>
+</head>
+<body>
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+
+<div class="sub-nav">
+    当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>> <a id="info" href="../../home">条目</a>
+    &gt;知识图谱
+</div>
+<div id="mynetwork" style="width:50%;float:left; border:2.5px solid #d3d3d3;"> </div>
+<div id="infobar"  style="width:49%;float:left; border:2.5px solid #d3d3d3;right:1px;">
+
+    <img src="../../images/example.png"/>
+
+    <p id="eventSpan">
+    </p>
+    <p id="numSpan">
+    </p>
+</div>
+<script type="text/javascript">
+    // create an array with nodes
+    let id = [[${eid}]];
+    let S="S";let J="J";
+    let type=[[${type}]];
+    document.getElementById("info").setAttribute("href","../"+id);
+    var edges;
+    var nodes;
+    var network;
+    var NodeNum=0;
+    $.ajax({
+        type: "GET",
+        url: "/bookEntry"+type+"/graph_init",
+        data: {"id":id},
+        datatype: "json",
+        error: function(error) {
+            console.log(error.toString());
+        },
+        success: function(data){
+            console.log(data);
+            edges=new vis.DataSet(data.edges);
+            nodes=new vis.DataSet(data.nodes);
+            var container = document.getElementById('mynetwork');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var screen_height=(window.screen.availHeight)-60;
+
+            $("#mynetwork").css({'height':screen_height});
+            var options = {
+
+                edges:
+                    {
+
+                        color: {
+                            color:'#97C2FC',
+                            highlight:'#f403f4',
+                            hover: 'green',
+
+                            opacity:1.0
+                        },
+                    },
+
+                nodes:
+                    {
+                        shape:'dot',
+                        size:15,
+                        color: {
+                            border: '#2B7CE9',
+                            background: '#97C2FC',
+                            highlight: {
+                                border: '#2B7CE9',
+                                background: '#f403f4'
+                            },
+                            hover: {
+                                border: '#2B7CE9',
+                                background: '#f403f4'
+                            }
+                        },
+
+                    },
+
+
+                groups:{
+                    p:{color:{background:'orange'}, borderWidth:1,shape:'triangle'},
+                    h:{color:{background:'green'}, borderWidth:1,shape:'star'},
+                    s:{color:{background:'#f9f4dc'}, borderWidth:1,shape:'square'},
+                    j:{color:{background:'#f9f4dc'}, borderWidth:1,shape:'square'}
+                },
+                layout: {
+                    improvedLayout: false,
+                },
+                interaction:
+                    {
+                        navigationButtons: true,
+                        keyboard: true,
+                        hover:true,
+                    },
+                manipulation: {
+                    enabled: true
+                }
+
+            };
+            network = new vis.Network(container, data, options);
+            network.on("click", function (params) {
+                var nodeID=params.nodes[0];
+                if(nodeID==undefined)return;
+                var real_id=nodeID.substring(1);
+                var findNode=nodes.get(nodeID);
+                var group=findNode.group;
+                var s="";
+                if(group=="p")s="/prescription/"+real_id;
+                else if(group=="s")s="/bookEntryS/"+real_id;
+                else if(group=="j")s="/bookEntryJ/"+real_id;
+                document.getElementById("eventSpan").innerHTML="链接:  <a href='"+s+"'>"+findNode.label+"</a>";
+                document.getElementById("numSpan").innerText="";
+            });
+        }});
+
+
+</script>
+
+<div th:replace="fragments/footer :: footer">footer</div>
+</body>
+</html>

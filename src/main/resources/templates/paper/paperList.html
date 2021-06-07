@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <title>中医知识测验子系统-试卷</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/demo.css}" rel="stylesheet">
+    <link th:href="@{/css/ready.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+<div class="wrapper">
+    <div class="sub-nav">
+        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>>测验子系统
+    </div>
+    <div th:replace="commons/bar::#examnav(activeUri='/exam/toExam')"></div>
+
+    <!--main panel-->
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <h4 class="page-title">未发布试卷</h4>
+                <div class="row">
+                    <div class="col-md-2"><h2><a class="btn btn-success" href="#" th:href="@{/paper/toAddPaper}">试卷添加</a></h2> </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-head-bg-success">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">试卷名称</th>
+                                        <th scope="col">创建者</th>
+                                        <th scope="col">单选题数量</th>
+                                        <th scope="col">多选题数量</th>
+                                        <th scope="col">填空题数量</th>
+                                        <th scope="col">问答题数量</th>
+                                        <th scope="col">总分</th>
+                                        <th scope="col">创建时间</th>
+                                        <th scope="col">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="pap,papStat:${papers1}">
+                                        <td th:text="${papStat.count}"></td>
+                                        <td th:text="${pap.getPaperName()}"></td>
+                                        <td th:text="${pap.getCreateName()}"></td>
+                                        <td th:text="${pap.getNuma()}"></td>
+                                        <td th:text="${pap.getNumb()}"></td>
+                                        <td th:text="${pap.getNumc()}"></td>
+                                        <td th:text="${pap.getNumd()}"></td>
+                                        <td th:text="${pap.getScore_all()}"></td>
+                                        <td th:text="${pap.getCreateTime()}"></td>
+                                        <td>
+                                            <a th:if="${session.loger.getPower()==1||pap.getCreatorId()==session.loger.getId()}" class="btn btn btn-primary btn-round" th:href="@{/paper/toManagerQuestion/}+${pap.getId()}">编辑</a>
+                                            <button th:if="${session.loger.getPower()==1||pap.getCreatorId()==session.loger.getId()}" th:attr="del_uri=@{/paper/deletePaper/}+${pap.getId()}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+                                            <a class="btn btn btn-success btn-round" th:href="@{/paper/publish/}+${pap.getId()}">发布</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    <!--main panel-->
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <h4 class="page-title">已发布试卷</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-head-bg-success">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">试卷名称</th>
+                                        <th scope="col">创建者</th>
+                                        <th scope="col">单选题数量</th>
+                                        <th scope="col">多选题数量</th>
+                                        <th scope="col">填空题数量</th>
+                                        <th scope="col">问答题数量</th>
+                                        <th scope="col">总分</th>
+                                        <th scope="col">发布时间</th>
+                                        <th scope="col">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="pap,papStat:${papers2}">
+                                        <td th:text="${papStat.count}"></td>
+                                        <td th:text="${pap.getPaperName()}"></td>
+                                        <td th:text="${pap.getCreateName()}"></td>
+                                        <td th:text="${pap.getNuma()}"></td>
+                                        <td th:text="${pap.getNumb()}"></td>
+                                        <td th:text="${pap.getNumc()}"></td>
+                                        <td th:text="${pap.getNumd()}"></td>
+                                        <td th:text="${pap.getScore_all()}"></td>
+                                        <td th:text="${pap.getCreateTime()}"></td>
+                                        <td>
+                                            <a class="btn btn btn-success btn-round" th:if="${session.loger.getPower()==0}" th:href="@{/exam/toDoExam/}+${pap.getId()}">参与测验</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--footer-->
+        <div th:replace="fragments/footer :: footer">footer</div>
+    </div>
+</div>
+<form id="deleteClasseForm" method="post">
+    <input type="hidden" name="_method" value="delete">
+</form>
+<!--映入jclary，src-->
+<script th:src="@{/js/jquery-3.2.1/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/webjars/layer/src/layer.js}"></script>
+<script>
+    //删除指定id试题
+    $(".deleteBtn").click(function () {
+        //获取uri
+        // $(this).attr("del_uri")
+        //提交表单
+        // $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
+        if(confirm("确实要删除吗？")){
+            //提交表单
+            $("#deleteClasseForm").attr("action",$(this).attr("del_uri")).submit();
+            layer.msg("删除成功", {time:2000, icon:6});
+        }else {
+            layer.msg("删除取消", {time:2000, icon:5, shift:6});
+        }
+        return false;
+    });
+
+</script>
+</body>
+</html>

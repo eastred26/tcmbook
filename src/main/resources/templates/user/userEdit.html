@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>中医知识测验子系统-用户管理</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link th:href="@{/css/demo.css}" rel="stylesheet">
+    <link th:href="@{/css/ready.css}" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/ready.css" th:href="@{/assets/css/ready.css}">
+    <link rel="stylesheet" href="assets/css/demo.css" th:href="@{/assets/css/demo.css}">
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+<div class="container">
+
+    <!--slidebar-->
+    <div th:replace="commons/bar::#sidebar(activeUri='/user/userEdit')"></div>
+
+    <!--main panel-->
+    <div style="width:82%;float:left;right:1px;">
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <h4 class="page-title">学生管理页面</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card"> </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-head-bg-success">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">用户名</th>
+                                        <th scope="col">账号</th>
+                                        <th scope="col">密码</th>
+                                        <th scope="col">权限</th>
+                                        <th scope="col">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="user:${users}">
+                                        <td th:text="${user.getId()}"></td>
+                                        <td th:text="${user.getName()}"></td>
+                                        <td th:text="${user.getAccount()}"></td>
+                                        <td th:text="${user.getPwd()}"></td>
+                                        <td th:text="${user.getPower()}==0?'用户':'管理员'"></td>
+                                        <td>
+                                            <button th:attr="del_uri=@{/user/deleteUser/}+${user.getId()}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--footer-->
+        <div th:replace="fragments/footer::footer"></div>
+    </div>
+    </div>
+</div>
+<form id="deleteTeacherForm" method="post">
+    <input type="hidden" name="_method" value="delete">
+</form>
+<!--映入jquery，src-->
+<script src="assets/js/core/jquery.3.2.1.min.js" th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
+<script th:src="@{/webjars/layer/src/layer.js}"></script>
+<script>
+    //删除指定id教师
+    $(".deleteBtn").click(function () {
+        //获取uri
+        // $(this).attr("del_uri")
+        //提交表单
+        // $("#deleteTeacherForm").attr("action",$(this).attr("del_uri")).submit();
+        if(confirm("确实要删除吗？")){
+            //提交表单
+            $("#deleteTeacherForm").attr("action",$(this).attr("del_uri")).submit();
+            layer.msg("删除成功", {time:2000, icon:6});
+        }else {
+            layer.msg("删除取消", {time:2000, icon:5, shift:6});
+        }
+        return false;
+    });
+
+</script>
+</body>
+</html>

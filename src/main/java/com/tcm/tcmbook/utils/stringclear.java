@@ -44,9 +44,9 @@ public class stringclear {
         int l=res.length();
         int i=0;
         for(i=l-1;i>=0;i--){
-            if(res.charAt(i)!='（')i--;
-            else break;
+            if(res.charAt(i)=='（') break;
         }
+        //System.out.println(res+i);
         return res.substring(0,i);
     }
 
@@ -70,5 +70,19 @@ public class stringclear {
             r+=c;
         }
         return r;
+    }
+    //在clear3基础上截取前面一小段
+    public static String clear4(String s){
+        s=clear3(s);
+        if(s=="")return s;
+        char[] cs=s.toCharArray();
+        int num=0;
+        int pos=0;
+        for(char c:cs){
+            if(c=='，'||c=='。'||c==',')num++;
+            pos++;
+            if(num==2)break;
+        }
+        return s.substring(0,pos-1)+"...";
     }
 }

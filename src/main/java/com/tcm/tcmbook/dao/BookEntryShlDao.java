@@ -12,4 +12,8 @@ import java.util.List;
 public interface BookEntryShlDao {
     @Select("SELECT * FROM entry_shl WHERE id=${id}")
     BookEntryShl findById(Integer id);
+    @Select("SELECT * FROM entry_shl")
+    List<BookEntryShl> findAll();
+    @Select("SELECT * FROM entry_shl WHERE titleId=${tid}")
+    List<BookEntryShl> findByTid(Integer tid);
 }

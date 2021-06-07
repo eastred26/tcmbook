@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <title>中医知识测验子系统-测验结果</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/demo.css}" rel="stylesheet">
+    <link th:href="@{/css/ready.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+
+<div class="container">
+
+    <!--examnav-->
+    <div th:replace="commons/bar::#examnav(activeUri='/exam/toHist')"></div>
+
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+        <div class="col-md-1"></div>
+            <div>
+                <div class="row form-check" th:each="r,rStat:${records}">
+                    <div class="col-xs-12 col-lg-12">
+                        <u th:if="${r.getIsRight()==1}">
+                            <label  th:text="${rStat.count}+${questions.get(rStat.count-1)}"></label><br>
+                            <label class="alert-success" th:text="'你的答案：'+${yourAnswers.get(rStat.count-1)}+'  ————  正确'"></label>
+                        </u>
+                        <u th:if="${r.getIsRight()==0}">
+                            <label  th:text="${rStat.count}+${questions.get(rStat.count-1)}"></label><br>
+                            <label class="alert-danger" th:text="'你的答案：'+${yourAnswers.get(rStat.count-1)}+'  ————  正确答案：'+${answers.get(rStat.count-1)}"></label>
+                        </u>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+        </div>
+    </div>
+
+
+    <!--footer-->
+    <div th:replace="fragments/footer :: footer">footer</div>
+</div> <!-- /container -->
+</body>
+</html>

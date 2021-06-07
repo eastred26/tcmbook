@@ -9,7 +9,7 @@
     <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/herb.css}" rel="stylesheet">
-    <title>中药成分结构数据专题-方药</title>
+    <title>基于《伤寒论》与《金匮要略》的中医知识服务系统-方剂</title>
 </head>
 <body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
 <div th:fragment="navbar" class="wrapper" role="navigation">
@@ -17,10 +17,10 @@
 </div>
 <div class="content-container">
     <div class="sub-nav">
-        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../home">中药成分结构数据专题</a>
-        &gt;方药
+        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>
+        &gt;方剂
     </div>
-    <div class="detail-head" id="tcm_detail_head" th:text="'方药：'+${FangMing}">
+    <div class="detail-head" id="tcm_detail_head" th:text="'方剂：'+${FangMing}">
     </div>
     <div class="basic-content">
         <div class="new-title">

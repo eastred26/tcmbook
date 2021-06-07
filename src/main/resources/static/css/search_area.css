@@ -121,6 +121,19 @@
     color: #fff;
 }
 
+#identification_search_btn1{
+    display: inline-block;
+    width: 108px;
+    height: 37px;
+    box-sizing: border-box;
+    line-height: 37px;
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    text-align: center;
+    background: #5182D6;
+    color: #fff;
+}
+
 #identification_search_icon{
     margin-left: 10px;
 }

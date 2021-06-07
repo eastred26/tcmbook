@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>公共页面抽取</title>
+    <link href="#" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<!--slidebar-->
+<div style="width: 17%;float: left;" class="sidebar" id="sidebar_shl">
+    <div class="scrollbar-inner sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS'?'nav-item active':'nav-item'}">
+                <a class="nav-link active" href="#" th:href="@{/bookEntryS/}+${id}">
+                    <p>条目首页</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/yuanwen'?'nav-item active':'nav-item'}">
+                <a class="nav-link active" href="#" th:href="@{/bookEntryS/yuanwen/}+${id}">
+                    <p>原文</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/cijie'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/cijie/}+${id}">
+                    <p>词解</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/tiyao'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/tiyao/}+${id}">
+                    <p>提要</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/shiyi'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/shiyi/}+${id}">
+                    <p>释义</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/xuanzhu'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/xuanzhu/}+${id}">
+                    <p>选注</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/pingshu'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/pingshu/}+${id}">
+                    <p>评述</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/zhifa'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/zhifa/}+${id}">
+                    <p>治法</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/fangyaolink'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/fangyaolink/}+${id}">
+                    <p>方剂链接</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/exam/fangyi'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/fangyi/}+${id}">
+                    <p>方药方义</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/fanglunxuan'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/fanglunxuan/}+${id}">
+                    <p>方论选</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/dianping'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/dianping/}+${id}">
+                    <p>点评</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/linchuangyingyong'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/linchuangyingyong/}+${id}">
+                    <p>临床应用</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/anyu'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/anyu/}+${id}">
+                    <p>按语</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/xiandaiyanjiu'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/xiandaiyanjiu/}+${id}">
+                    <p>现代研究</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryS/graph'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryS/graph/}+${id}">
+                    <p>知识图谱</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--slidebar-->
+<div style="width: 17%;float: left;" class="sidebar" id="sidebar_jgyl">
+    <div class="scrollbar-inner sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ'?'nav-item active':'nav-item'}">
+                <a class="nav-link active" href="#" th:href="@{/bookEntryJ/}+${id}">
+                    <p>条目首页</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/yuanwen'?'nav-item active':'nav-item'}">
+                <a class="nav-link active" href="#" th:href="@{/bookEntryJ/yuanwen/}+${id}">
+                    <p>原文</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/ciyuzhujie'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/ciyuzhujie/}+${id}">
+                    <p>词语注解</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/jingyichanshi'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/jingyichanshi/}+${id}">
+                    <p>经义阐释</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/fangyaopingxi'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/fangyaopingxi/}+${id}">
+                    <p>方药评析</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/fangyaolink'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/fangyaolink/}+${id}">
+                    <p>方剂链接</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/wenxianxuanlu'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/wenxianxuanlu/}+${id}">
+                    <p>文献选录</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/linchuangyingyong'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/linchuangyingyong/}+${id}">
+                    <p>临床应用</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/xiandaiyanjiu'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/xiandaiyanjiu/}+${id}">
+                    <p>现代研究</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/bookEntryJ/graph'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/bookEntryJ/graph/}+${id}">
+                    <p>知识图谱</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="examnav" th:fragment="examnav" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="btn btn-info" th:class="${activeUri=='/exam/toHome'?'btn btn-warning':'btn btn-info'}" th:href="@{/exam/toHome}" href="#" disabled="">首页</a>
+        <a class="btn btn-info" th:class="${activeUri=='/exam/toExam'?'btn btn-warning':'btn btn-info'}" th:href="@{/exam/toExam}">测验</a>
+        <a class="btn btn-info" th:class="${activeUri=='/exam/toHist'?'btn btn-warning':'btn btn-info'}" th:href="@{/exam/toHist/}+${session.loger.getId()}">记录</a>
+    </nav>
+</div>
+
+
+<!--slidebar-->
+<div style="width: 17%;float: left;" class="sidebar" id="sidebar">
+    <div class="scrollbar-inner sidebar-wrapper">
+        <div class="user">
+            <div class="photo">
+                <!--                <img th:src="${static.assets.img}" src="#">-->
+            </div>
+            <div class="info">
+                <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                </a>
+            </div>
+        </div>
+        <ul class="nav">
+            <li class="nav-item" th:class="${activeUri=='/backindex'?'nav-item active':'nav-item'}">
+                <a class="nav-link active" href="#" th:href="@{/backindex}">
+                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20px" height="20px">
+                        <path d="M288 115L69.47 307.71c-1.62 1.46-3.69 2.14-5.47 3.35V496a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V311.1c-1.7-1.16-3.72-1.82-5.26-3.2zm96 261a8 8 0 0 1-8 8h-56v56a8 8 0 0 1-8 8h-48a8 8 0 0 1-8-8v-56h-56a8 8 0 0 1-8-8v-48a8 8 0 0 1 8-8h56v-56a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v56h56a8 8 0 0 1 8 8zm186.69-139.72l-255.94-226a39.85 39.85 0 0 0-53.45 0l-256 226a16 16 0 0 0-1.21 22.6L25.5 282.7a16 16 0 0 0 22.6 1.21L277.42 81.63a16 16 0 0 1 21.17 0L527.91 283.9a16 16 0 0 0 22.6-1.21l21.4-23.82a16 16 0 0 0-1.22-22.59z"></path>
+                    </svg>
+                    <p>&nbsp;&nbsp;首页</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/paper/getAllPaper'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/paper/getAllPaper}">
+                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20px" height="20px">
+                        <path d="M433.941 65.941l-51.882-51.882A48 48 0 0 0 348.118 0H176c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48v-48h80c26.51 0 48-21.49 48-48V99.882a48 48 0 0 0-14.059-33.941zM266 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h74v224c0 26.51 21.49 48 48 48h96v42a6 6 0 0 1-6 6zm128-96H182a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h106v88c0 13.255 10.745 24 24 24h88v202a6 6 0 0 1-6 6zm6-256h-64V48h9.632c1.591 0 3.117.632 4.243 1.757l48.368 48.368a6 6 0 0 1 1.757 4.243V112z"></path>
+                    </svg>
+                    <p>&nbsp;&nbsp;试卷管理</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/exam/getAllQuestion'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/exam/getAllQuestion}">
+                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" width="20px" height="20px">
+                        <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path>
+                    </svg>
+                    <p>&nbsp;&nbsp;错题统计</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/exam/getAllExam'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/exam/getAllExam}">
+                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20px" height="20px">
+                        <path d="M149.333 216v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24v-80c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zM125.333 32H24C10.745 32 0 42.745 0 56v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24zm80 448H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm-24-424v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24zm24 264H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24z"></path>
+                    </svg>
+                    <p>&nbsp;&nbsp;记录管理</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/question/toAddQuestion'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/question/toAddQuestion}">
+                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20px" height="20px">
+                        <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"></path>
+                    </svg>
+                    <p>&nbsp;&nbsp;习题导入</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

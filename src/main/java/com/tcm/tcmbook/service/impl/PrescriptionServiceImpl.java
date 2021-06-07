@@ -6,6 +6,8 @@ import com.tcm.tcmbook.service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PrescriptionServiceImpl implements PrescriptionService {
     @Autowired
@@ -20,4 +22,6 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public String getNameById(Integer id){
         return prescriptionDao.findNameById(id);
     }
+    @Override
+    public List<Prescription> findAll(){return prescriptionDao.findAll();}
 }

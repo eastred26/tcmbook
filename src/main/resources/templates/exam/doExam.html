@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <title>中医知识测验子系统-测验</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/demo.css}" rel="stylesheet">
+    <link th:href="@{/css/ready.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+<div class="container">
+
+    <!--examnav-->
+    <div th:replace="commons/bar::#examnav(activeUri='/exam/toExam')"></div>
+
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+        <form th:action="@{/exam/submitExam}" method="post">
+            <div class="col-md-10 text-warning" th:text="'单选题:'+${paper.getNuma()}+'个；多选题:'+${paper.getNumb()}+'个；填空题:'+${paper.getNumc()}+'个'"></div>
+            <div class="col-md-10 text-warning" th:text="'填空题存在多空时，答案用空格隔开'"></div>
+            <!--提交试卷id，学生id-->
+            <input type="hidden" name="paperId" th:each="qb,qbStat:${questionPapers}" th:value="${paper.getId()}">
+            <input type="hidden" name="userId" th:value="${session.loger.getId()}">
+            <div>
+                <div class="row form-check" th:each="qb,qbStat:${questionPapers}">
+                    <div class="col-xs-12 col-lg-12">
+                        <!--分三种题型显示以及提交值-->
+                        <label th:if="${qb.getType()=='sb'||qb.getType()=='jb'}" th:text="${qbStat.count}+'.('+'多选题'+')'+${qb.getQuestionName()}" ></label><br>
+                        <label th:if="${qb.getType()!='sb'&&qb.getType()!='jb'}" th:text="${qbStat.count}+'.'+${qb.getQuestionName()}" ></label>
+                        <br th:if="${qb.getType()!='sb'&&qb.getType()!='jb'}">
+                        <label class="form-radio-label" th:if="${qb.getType()=='sa'||qb.getType()=='ja'}">
+                            <input class="form-radio-input" type="radio"   th:name="${qb.getType()+qb.getId()}" value="A">
+                            <span class="form-radio-sign" th:text="'A.'+${qb.getAnswerA()}"></span><br>
+                            <input class="form-radio-input" type="radio" th:name="${qb.getType()+qb.getId()}" value="B">
+                            <span class="form-radio-sign" th:text="'B.'+${qb.getAnswerB()}"></span><br>
+                            <input class="form-radio-input"  type="radio" th:name="${qb.getType()+qb.getId()}" value="C">
+                            <span class="form-radio-sign"   th:text="'C.'+${qb.getAnswerC()}"></span><br>
+                            <input class="form-radio-input"  type="radio" th:name="${qb.getType()+qb.getId()}" value="D">
+                            <span class="form-radio-sign" th:text="'D.'+${qb.getAnswerD()}"></span><br>
+                            <input class="form-radio-input"  type="radio" th:name="${qb.getType()+qb.getId()}" value="E">
+                            <span class="form-radio-sign" th:text="'E.'+${qb.getAnswerE()}"></span><br><br>
+                        </label>
+                        <label class="form-radio-label" th:if="${qb.getType()=='sb'||qb.getType()=='jb'}">
+                            <input class="form-check-input" type="checkbox"  th:name="${qb.getType()+qb.getId()}" value="A">
+                            <span class="form-check-sign" th:text="'A.'+${qb.getAnswerA()}"></span><br>
+                            <input class="form-check-input" type="checkbox"  th:name="${qb.getType()+qb.getId()}" value="B">
+                            <span class="form-check-sign" th:text="'B.'+${qb.getAnswerB()}"></span><br>
+                            <input class="form-check-input"  type="checkbox" th:name="${qb.getType()+qb.getId()}" value="C">
+                            <span class="form-check-sign" th:text="'C.'+${qb.getAnswerC()}"></span><br>
+                            <input class="form-check-input"  type="checkbox" th:name="${qb.getType()+qb.getId()}" value="D">
+                            <span class="form-check-sign" th:text="'D.'+${qb.getAnswerD()}"></span><br>
+                            <input class="form-check-input"  type="checkbox" th:name="${qb.getType()+qb.getId()}" value="E">
+                            <span class="form-check-sign" th:text="'E.'+${qb.getAnswerE()}"></span><br>
+                            <br>
+                        </label>
+                        <label class="form-radio-label" th:if="${qb.getType()=='sc'||qb.getType()=='jc'}">
+                            <input type="text" class="form-text" th:name="${qb.getType()+qb.getId()}" >
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success" th:text="提交"></button>
+        </form>
+    </div>
+        </div>
+    </div>
+    <!--footer-->
+    <div th:replace="fragments/footer :: footer">footer</div>
+</div> <!-- /container -->
+<script src="assets/js/core/jquery.3.2.1.min.js" th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
+<script type="text/javascript">
+        $(function () {
+            setInterval(function () {
+                $("#timemchine").load(location.href + " #timemchine");
+            }, 1000);
+        })
+</script>
+</body>
+</html>

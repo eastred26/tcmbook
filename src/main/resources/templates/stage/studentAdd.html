@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <title>中医知识测验子系统首页</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/demo.css}" rel="stylesheet">
+    <link th:href="@{/css/ready.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+
+<div class="container">
+    <!--main panel-->
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-8">
+            <div class="main-panel">
+                <div class="content">
+                    <div class="container">
+                        <h4 class="page-title">学生注册页面</h4>
+                        <form th:action="@{/prexam/AddStudent}" method="post">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="name">姓名</label>
+                                            <input type="text" class="form-control" required name="name" id="name" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">账号</label>
+                                            <input type="text" class="form-control" required name="account" id="account" placeholder="数字字母">
+                                            <small id="accounthelp" class="form-text text-muted"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">密码</label>
+                                            <input type="password" class="form-control" required id="password" name="pwd" >
+                                        </div>
+                                    </div>
+
+                                    <div class="card-action">
+                                        <button class="btn btn-success" type="submit">提交</button>
+                                        <button class="btn btn-danger" type="reset">取消</button>
+                                        <button><a class="btn btn-sm btn-info" th:href="@{/foreLogin}">返回</a></button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+</div>
+<div th:replace="fragments/footer :: footer">footer</div>
+</body>
+</html>

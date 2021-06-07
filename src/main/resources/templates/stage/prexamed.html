@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <title>中医知识测验子系统首页</title>
+    <link th:href="@{/css/ready.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+<div class="container">
+    <!--examnav-->
+    <div class="sub-nav">
+        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>>测验子系统
+    </div>
+    <div th:replace="commons/bar::#examnav(activeUri='/exam/toHome')"></div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card-user">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">用户数</p>
+                                    <h4 class="card-title" th:text="${userNum}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-question">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">总计试题</p>
+                                    <h4 class="card-title" th:text="${queNum}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-paper">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">共有试卷</p>
+                                    <h4 class="card-title" th:text="${papNum}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><br></div>
+        <div class="row">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">测验榜单</h4>
+                    <p class="card-category">近期高正确率</p>
+                </div>
+                <div class="card-body">
+                    <table class="table table-head-bg-success table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">用户</th>
+                            <th scope="col">试卷名</th>
+                            <th scope="col">总分</th>
+                            <th scope="col">得分</th>
+                            <th scope="col">正确率</th>
+                            <th scope="col">提交时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="exam,examStat:${exams}">
+                            <td th:text="${examStat.count}"></td>
+                            <td th:text="${exam.getUName()}"></td>
+                            <td th:text="${exam.getPname()}"></td>
+                            <td th:text="${exam.getScore_all()}"></td>
+                            <td th:text="${exam.getScore_get()}"></td>
+                            <td th:text="${exam.getRate()}"></td>
+                            <td th:text="${exam.getSubmitTime()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">高频错题</h4>
+                    <p class="card-category">近期错误人数多</p>
+                </div>
+                <div class="card-body">
+                    <table class="table table-head-bg-success table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">题目</th>
+                            <th scope="col">正确答案</th>
+                            <th scope="col">易错选项</th>
+                            <th scope="col">错误次数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="que,queStat:${questions}">
+                            <td th:text="${queStat.count}"></td>
+                            <td th:text="${que.getAllName()}"></td>
+                            <td th:text="${que.getAnswer()}"></td>
+                            <td th:text="${anss.get(queStat.count-1)}"></td>
+                            <td th:text="${nums.get(queStat.count-1)}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div th:replace="fragments/footer :: footer">footer</div>
+</div> <!-- /container -->
+</body>
+</html>
