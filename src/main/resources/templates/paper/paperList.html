@@ -16,13 +16,13 @@
 <div th:fragment="navbar" class="wrapper" role="navigation">
     <div th:replace="fragments/header :: header">Header</div>
 </div>
-<div class="wrapper">
+<div class="container">
     <div class="sub-nav">
-        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>>测验子系统
+        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>><a href="../../index">测验子系统</a>>测验
     </div>
     <div th:replace="commons/bar::#examnav(activeUri='/exam/toExam')"></div>
+<!--
 
-    <!--main panel-->
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
@@ -73,12 +73,13 @@
             </div>
         </div>
 </div>
+    -->
     <!--main panel-->
     <div class="main-panel">
         <div class="content">
             <div class="container-fluid">
-                <h4 class="page-title">已发布试卷</h4>
                 <div class="row">
+                    <div class="col-md-2"><h2><a class="btn btn-success" href="#" th:href="@{/paper/toAddPaper}">试卷添加</a></h2> </div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">

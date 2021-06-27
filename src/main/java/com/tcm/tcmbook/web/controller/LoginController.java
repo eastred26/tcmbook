@@ -68,9 +68,9 @@ public class LoginController {
     //前台登录到展示页面
     @RequestMapping("/index")
     public String indexprexam(Model model){
-        int userNum=userService.findNum();
+        int recordNum=recordService.findNum();
         int papNum=paperService.findNum();
-        model.addAttribute("userNum",userNum);
+        model.addAttribute("recordNum",recordNum);
         model.addAttribute("queNum",4614+12834);
         model.addAttribute("papNum",papNum);
 
@@ -134,9 +134,9 @@ public class LoginController {
     @RequestMapping("/backindex")
     public String index(Model model){
         //查询所有用户
-        int userNum=userService.findNum();
+        int recordNum=recordService.findNum();
         int papNum=paperService.findNum();
-        model.addAttribute("userNum",userNum);
+        model.addAttribute("recordNum",recordNum);
         model.addAttribute("queNum",4614+12834);
         model.addAttribute("papNum",papNum);
 

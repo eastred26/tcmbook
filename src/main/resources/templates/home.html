@@ -24,7 +24,6 @@
         </div>
     </div>
     <div id="search_cf" class="search cf">
-        <a class="button" href="./login" id="identification_search_btn1" style="width:10%;float:right;right:1px;">测验子系统</a>
         <table  class="search_table" cellpadding="0">
             <tr id="search_cell">
                 <!-- 关键字输入框 -->
@@ -46,81 +45,31 @@
             <input type="radio" name="search_type" value="herb">中药&nbsp;&nbsp;
         </div>
     </div>
-    <div class="col-md-12" style="margin-top: 30px;">
-        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-            <li class="nav-item col-md-3">
-                <a class="nav-link active" id="shl-tab" data-toggle="tab" href="#shl-panel" role="tab"
-                   aria-selected="true">
-                    <h5>伤寒论</h5>
-                </a>
-            </li>
-            <li class="nav-item col-md-3">
-                <a class="nav-link" id="jgyl-tab" data-toggle="tab" href="#jgyl-panel" role="tab"
-                   aria-selected="false">
-                    <h5>金匮要略</h5>
-                </a>
-            </li>
-            <li class="nav-item col-md-3">
-                <a class="nav-link" id="pre-tab" data-toggle="tab" href="#pre-panel" role="tab"
-                   aria-selected="false">
-                    <h5>方剂</h5>
-                </a>
-            </li>
-            <li class="nav-item col-md-3">
-                <a class="nav-link" id="herb-tab" data-toggle="tab" href="#pre-panel" role="tab"
-                   aria-selected="false">
-                    <h5>中药</h5>
-                </a>
-            </li>
-        </ul>
-    </div>
 
-    <div class="tab-content" id="myTabContent" style="margin-top: 50px;">
-        <div class="tab-pane fade show active" id="shl-panel" role="tabpanel" aria-labelledby="shl-tab">
-            <div th:each="shl : ${shlMap}" class="alphabet-med">
-                <p class="alphabet-name" th:text="${shl.key}"></p>
-                <ul class="row">
-                    <li th:each="shlItem : ${shl.value}" th:if="${shlItemStat.index<=3}" class="col-md-3" style="height: 50px;">
-                        <a class="med-name"  th:text="${shlItem.value}" th:href="'./bookEntryS/'+${shlItem.key}"></a>
-                    </li></ul>
-                <a th:if="${shl.value.size()>=4}" data-toggle="collapse" data-parent="#med-panel"
-                   th:href="'#collapse'+'_shl_'+${shlStat.index}" onclick="changeState(this)" class="toggle-more">更多+</a>
-                <div th:id="'collapse'+'_shl_'+${shlStat.index}" class="panel-collapse collapse in">
-                    <ul class="row">
-                        <li th:each="shlItem : ${shl.value}" th:if="${shlItemStat.index>=4}" class="col-md-3" style="height: 50px;">
-                            <a class="med-name"  th:text="${shlItem.value}" th:href="'./bookEntryS/'+${shlItem.key}"></a>
-                        </li></ul>
-                </div>
+    <div class="cbox-main clearfix">
+        <div class="cbox-item">
+            <span><img src="../../images/entry.png" width="77px" height="77px"/></span>
+            <div class="cbox-detail">
+                <div class="detail-title"><a href="./navigation">条目方药导航</a></div>
+                <p class="detail-intro">该模块为用户提供《伤寒论》与《金匮要略》所包含条目、方药信息，并根据目录、字母分类进行导航</p>
             </div>
         </div>
-
-        <div class="tab-pane fade show active" id="jgyl-panel" role="tabpanel" aria-labelledby="jgyl-tab">
-            <div th:each="jgyl : ${jgylMap}" class="alphabet-med">
-                <p class="alphabet-name" th:text="${jgyl.key}"></p>
-                <ul class="row">
-                    <li th:each="jgylItem : ${jgyl.value}" th:if="${jgylItemStat.index<=3}" class="col-md-3" style="height: 50px;">
-                        <a class="med-name"  th:text="${jgylItem.value}" th:href="'./bookEntryJ/'+${jgylItem.key}"></a>
-                    </li></ul>
-                <a th:if="${jgyl.value.size()>=4}" data-toggle="collapse" data-parent="#med-panel"
-                   th:href="'#collapse'+'_jgyl_'+${jgylStat.index}" onclick="changeState(this)" class="toggle-more">更多+</a>
-                <div th:id="'collapse'+'_jgyl_'+${jgylStat.index}" class="panel-collapse collapse in">
-                    <ul class="row">
-                        <li th:each="jgylItem : ${jgyl.value}" th:if="${jgylItemStat.index>=4}" class="col-md-3" style="height: 50px;">
-                            <a class="med-name"  th:text="${jgylItem.value}" th:href="'./bookEntryJ/'+${jgylItem.key}"></a>
-                        </li></ul>
-                </div>
+        <div class="cbox-item">
+            <span><img src="../../images/show.png" width="77px" height="77px"/></span>
+            <div class="cbox-detail">
+                <div class="detail-title"><a href="./bookEntryJ/graph/278">知识图谱</a></div>
+                <p class="detail-intro">该模块提供了条目、方剂、中药等条目的可视化知识图谱，图谱可动态变化</p>
             </div>
         </div>
-
-        <div class="tab-pane fade" id="pre-panel" role="tabpanel" aria-labelledby="pre-tab">
-            <ul>
-                <li th:each="pre : ${preMap}"  class="bookcont1">
-                    <a   th:text="${pre.value}" th:href="'./prescription/'+${pre.key}"></a>
-                </li></ul>
+        <div class="cbox-item">
+            <span><img src="../../images/test.png" width="77px" height="77px"/></span>
+            <div class="cbox-detail">
+                <div class="detail-title"><a href="./login">知识测验</a></div>
+                <p class="detail-intro">该模块提供有关《伤寒论》与《金匮要略》的问题，问题来源于图书抽取或者自动生成</p>
+            </div>
         </div>
-
-
     </div>
+
 </div>
 <div th:replace="fragments/footer :: footer">footer</div>
 <script th:src="@{js/jquery-3.2.1/jquery.min.js}" type="text/javascript"></script>

@@ -72,4 +72,15 @@ public class questionServiceImpl implements questionService {
         else if(type.equals("jc"))return questionDao.findAllOrderByFalseDescjc();
         else return questionDao.findAllOrderByFalseDescjd();
     }
+    @Override
+    public List<Integer> FindUserQuestion(Integer uid){
+        return questionDao.FindUserQuestionByUid(uid);
+    }
+    @Override
+    public void AddUserQuestion(Integer uid,Integer qid){
+        Integer id=questionDao.FindUQMaxId();
+        if(id==null)id=1;
+        else id++;
+        questionDao.AddUserQuestion(id,uid,qid);
+    }
 }

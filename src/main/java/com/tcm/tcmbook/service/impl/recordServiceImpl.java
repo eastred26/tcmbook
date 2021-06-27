@@ -45,4 +45,16 @@ public class recordServiceImpl implements recordService {
         List<record> rs=recordDao.findFalse();
         return rs;
     }
+    @Override
+    public int findNumByUid(Integer uid){
+        return recordDao.findNumByUid(uid);
+    }
+    @Override
+    public int findNumFalseByUid(Integer uid){
+        return  recordDao.findNumFalseByUid(uid);
+    }
+    @Override
+    public int findNum(){
+        return recordDao.findNum();
+    }
 }

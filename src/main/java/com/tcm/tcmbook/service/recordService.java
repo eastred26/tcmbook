@@ -12,4 +12,7 @@ public interface recordService {
     List<record> findByUidType(Integer uid, String type);
     List<record> findFalse();
     List<record> getByUidEid(Integer uid, Integer eid);
+    int findNumByUid(Integer uid);
+    int findNumFalseByUid(Integer uid);
+    int findNum();
 }

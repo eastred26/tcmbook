@@ -37,12 +37,12 @@
                                         <div class="form-group">
                                                 <select class="form-control form-control-sm" name="book">
                                                 <u>
-                                                    <option th:text="伤寒论" th:value="s" th:if="0==${bookRes}" selected></option>
-                                                    <option th:text="伤寒论" th:value="s" th:if="0!=${bookRes}"></option>
+                                                    <option th:text="伤寒论" th:value="s" th:if="'s'==${bookRes}" selected></option>
+                                                    <option th:text="伤寒论" th:value="s" th:if="'s'!=${bookRes}"></option>
                                                 </u>
                                                 <u>
-                                                    <option th:text="金匮要略" th:value="j" th:if="1==${bookRes}" selected></option>
-                                                    <option th:text="金匮要略" th:value="j" th:if="1!=${bookRes}"></option>
+                                                    <option th:text="金匮要略" th:value="j" th:if="'j'==${bookRes}" selected></option>
+                                                    <option th:text="金匮要略" th:value="j" th:if="'j'!=${bookRes}"></option>
                                                 </u>
                                             </select>
                                         </div>
@@ -101,8 +101,8 @@
                                         <td>
 <!--                                            <button class="btn btn-sm btn-info" th:href="@{/paper/AddQuestion/}+${que.questionId}" th:if="!${quesds.contains(que.questionId)}">+</button>-->
 <!--                                            <button class="btn btn-sm btn-danger"th:href="@{/paper/AddQuestion/}+${que.questionId}" th:if="${quesds.contains(que.questionId)}" disabled="">-</button>-->
-                                            <a class="btn btn-sm btn-info"th:href="'/paper/AddQuestion?pid='+${paperId}+'&qid='+${que.getId()}+'&questionTypesRes='+${questionTypesRes}" th:if="!${quesds.contains(que.getId())}">+</a>
-                                            <button class="btn btn-sm btn-danger" th:if="${quesds.contains(que.getId())}" disabled="">！</button>
+                                            <a class="btn btn-sm btn-info"th:href="'/paper/AddQuestion?pid='+${paperId}+'&qid='+${bookRes}+${questionTypesRes}+${que.getId()}+'&questionTypesRes='+${questionTypesRes}" th:if="!${quesds.contains(bookRes+questionTypesRes+que.getId())}">+</a>
+                                            <button class="btn btn-sm btn-danger" th:if="${quesds.contains(bookRes+questionTypesRes+que.getId())}" disabled="">！</button>
                                         </td>
                                     </tr>
                                     </tbody>

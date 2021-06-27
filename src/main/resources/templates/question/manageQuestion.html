@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
+    <title>中医知识测验子系统首页</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/demo.css}" rel="stylesheet">
+    <link th:href="@{/css/ready.css}" rel="stylesheet">
+    <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/home.css}" rel="stylesheet">
+</head>
+<body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
+<div th:fragment="navbar" class="wrapper" role="navigation">
+    <div th:replace="fragments/header :: header">Header</div>
+</div>
+
+<div class="container">
+    <!--main panel-->
+    <div th:replace="commons/bar::#sidebar(activeUri='/question/manageQuestion')"></div>
+    <div style="width:82%;float:left;right:1px;">
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <h4 class="page-title" th:text="题库查看页面"></h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <form class="col-md-8" th:action="@{/question/manageQuestion}">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <select class="form-control form-control-sm" name="book">
+                                                            <u>
+                                                                <option th:text="伤寒论" th:value="'s'" th:if="'s'==${bookRes}" selected></option>
+                                                                <option th:text="伤寒论" th:value="'s'" th:if="'s'!=${bookRes}"></option>
+                                                            </u>
+                                                            <u>
+                                                                <option th:text="金匮要略" th:value="'j'" th:if="'j'==${bookRes}" selected></option>
+                                                                <option th:text="金匮要略" th:value="'j'" th:if="'j'!=${bookRes}"></option>
+                                                            </u>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <select class="form-control form-control-sm" name="type">
+                                                            <u>
+                                                                <option th:text="单选题" th:value="'a'" th:if="'a'==${questionTypesRes}" selected></option>
+                                                                <option th:text="单选题" th:value="'a'" th:if="'a'!=${questionTypesRes}"></option>
+                                                            </u>
+
+                                                            <u>
+                                                                <option th:text="多选题" th:value="'b'" th:if="'b'==${questionTypesRes}" selected></option>
+                                                                <option th:text="多选题" th:value="'b'" th:if="'b'!=${questionTypesRes}"></option>
+                                                            </u>
+                                                            <u>
+                                                                <option th:text="填空题" th:value="'c'" th:if="'c'==${questionTypesRes}" selected></option>
+                                                                <option th:text="填空题" th:value="'c'" th:if="'c'!=${questionTypesRes}"></option>
+                                                            </u>
+                                                            <u>
+                                                                <option th:text="问答题" th:value="'d'" th:if="'d'==${questionTypesRes}" selected></option>
+                                                                <option th:text="问答题" th:value="'d'" th:if="'d'!=${questionTypesRes}"></option>
+                                                            </u>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-primary btn-border btn-round" th:text="查看"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-head-bg-success">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">题目</th>
+                                            <th scope="col">答案</th>
+                                            <th scope="col">出题者</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="que,queStat:${pageInfo.list}">
+                                            <td th:text="${queStat.count}"></td>
+                                            <td th:text="${que.getAllName()}"></td>
+                                            <td th:text="${que.getAnswer()}"></td>
+                                            <td th:text="${que.getUid()}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="demo">
+                        </p><ul class="pagination pg-primary">
+                        <u th:if="${pageInfo.hasPreviousPage}">
+                            <li class="page-item">
+                                <a class="page-link" href="#" th:href="'/question/manageQuestion'+'?pageNum='+${pageInfo.pageNum-1}+'&type='+${questionTypesRes}+'&book='+${bookRes}" aria-label="Previous">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                        </u>
+                        <u th:each="nav:${pageInfo.navigatepageNums}">
+                            <li th:if="${pageInfo.pageNum!=nav}" class="page-item">
+                                <a class="page-link" th:href="'/question/manageQuestion'+'?pageNum='+${nav}+'&type='+${questionTypesRes}+'&book='+${bookRes}" th:text="${nav}"></a>
+                            </li>
+                            <li th:if="${pageInfo.pageNum==nav}" class="page-item active">
+                                <a class="page-link" th:href="'/question/manageQuestion'+'?pageNum='+${nav}+'&type='+${questionTypesRes}+'&book='+${bookRes}" th:text="${nav}"></a>
+                                <!--                            <a class="page-link" th:href="'/question/getAllQuestion?pageNum='+${nav}+'&questionCourse='+${questionCourseresRes}+'&questionType='+${questionTypesRes}" th:text="${nav}"></a>-->
+                            </li>
+                        </u>
+                        <u th:if="${pageInfo.hasNextPage}">
+                            <li class="page-item">
+                                <a class="page-link" href="#" th:href="'/question/manageQuestion'+'?pageNum='+${pageInfo.pageNum+1}+'&type='+${questionTypesRes}+'&book='+${bookRes}">
+                                    <span aria-hidden="true">»</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </u>
+                    </ul>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <!--footer-->
+            <div th:replace="fragments/footer :: footer">footer</div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:replace="fragments/footer :: footer">footer</div>
+</body>
+</html>

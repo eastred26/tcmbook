@@ -16,7 +16,7 @@
         <ul class="nav">
             <li class="nav-item" th:class="${activeUri=='/bookEntryS'?'nav-item active':'nav-item'}">
                 <a class="nav-link active" href="#" th:href="@{/bookEntryS/}+${id}">
-                    <p>条目首页</p>
+                    <p>条目总览</p>
                 </a>
             </li>
             <li class="nav-item" th:class="${activeUri=='/bookEntryS/yuanwen'?'nav-item active':'nav-item'}">
@@ -44,11 +44,6 @@
                     <p>选注</p>
                 </a>
             </li>
-            <li class="nav-item" th:class="${activeUri=='/bookEntryS/pingshu'?'nav-item active':'nav-item'}">
-                <a class="nav-link" href="#" th:href="@{/bookEntryS/pingshu/}+${id}">
-                    <p>评述</p>
-                </a>
-            </li>
             <li class="nav-item" th:class="${activeUri=='/bookEntryS/zhifa'?'nav-item active':'nav-item'}">
                 <a class="nav-link" href="#" th:href="@{/bookEntryS/zhifa/}+${id}">
                     <p>治法</p>
@@ -56,42 +51,12 @@
             </li>
             <li class="nav-item" th:class="${activeUri=='/bookEntryS/fangyaolink'?'nav-item active':'nav-item'}">
                 <a class="nav-link" href="#" th:href="@{/bookEntryS/fangyaolink/}+${id}">
-                    <p>方剂链接</p>
-                </a>
-            </li>
-            <li class="nav-item" th:class="${activeUri=='/exam/fangyi'?'nav-item active':'nav-item'}">
-                <a class="nav-link" href="#" th:href="@{/bookEntryS/fangyi/}+${id}">
-                    <p>方药方义</p>
-                </a>
-            </li>
-            <li class="nav-item" th:class="${activeUri=='/bookEntryS/fanglunxuan'?'nav-item active':'nav-item'}">
-                <a class="nav-link" href="#" th:href="@{/bookEntryS/fanglunxuan/}+${id}">
-                    <p>方论选</p>
-                </a>
-            </li>
-            <li class="nav-item" th:class="${activeUri=='/bookEntryS/dianping'?'nav-item active':'nav-item'}">
-                <a class="nav-link" href="#" th:href="@{/bookEntryS/dianping/}+${id}">
-                    <p>点评</p>
-                </a>
-            </li>
-            <li class="nav-item" th:class="${activeUri=='/bookEntryS/linchuangyingyong'?'nav-item active':'nav-item'}">
-                <a class="nav-link" href="#" th:href="@{/bookEntryS/linchuangyingyong/}+${id}">
-                    <p>临床应用</p>
-                </a>
-            </li>
-            <li class="nav-item" th:class="${activeUri=='/bookEntryS/anyu'?'nav-item active':'nav-item'}">
-                <a class="nav-link" href="#" th:href="@{/bookEntryS/anyu/}+${id}">
-                    <p>按语</p>
-                </a>
-            </li>
-            <li class="nav-item" th:class="${activeUri=='/bookEntryS/xiandaiyanjiu'?'nav-item active':'nav-item'}">
-                <a class="nav-link" href="#" th:href="@{/bookEntryS/xiandaiyanjiu/}+${id}">
-                    <p>现代研究</p>
+                    <p>方剂及应用</p>
                 </a>
             </li>
             <li class="nav-item" th:class="${activeUri=='/bookEntryS/graph'?'nav-item active':'nav-item'}">
                 <a class="nav-link" href="#" th:href="@{/bookEntryS/graph/}+${id}">
-                    <p>知识图谱</p>
+                    <p>知识图谱可视化</p>
                 </a>
             </li>
         </ul>
@@ -104,7 +69,7 @@
         <ul class="nav">
             <li class="nav-item" th:class="${activeUri=='/bookEntryJ'?'nav-item active':'nav-item'}">
                 <a class="nav-link active" href="#" th:href="@{/bookEntryJ/}+${id}">
-                    <p>条目首页</p>
+                    <p>条目总览</p>
                 </a>
             </li>
             <li class="nav-item" th:class="${activeUri=='/bookEntryJ/yuanwen'?'nav-item active':'nav-item'}">
@@ -149,7 +114,7 @@
             </li>
             <li class="nav-item" th:class="${activeUri=='/bookEntryJ/graph'?'nav-item active':'nav-item'}">
                 <a class="nav-link" href="#" th:href="@{/bookEntryJ/graph/}+${id}">
-                    <p>知识图谱</p>
+                    <p>知识图谱可视化</p>
                 </a>
             </li>
         </ul>
@@ -158,7 +123,6 @@
 
 <div id="examnav" th:fragment="examnav" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="btn btn-info" th:class="${activeUri=='/exam/toHome'?'btn btn-warning':'btn btn-info'}" th:href="@{/exam/toHome}" href="#" disabled="">首页</a>
         <a class="btn btn-info" th:class="${activeUri=='/exam/toExam'?'btn btn-warning':'btn btn-info'}" th:href="@{/exam/toExam}">测验</a>
         <a class="btn btn-info" th:class="${activeUri=='/exam/toHist'?'btn btn-warning':'btn btn-info'}" th:href="@{/exam/toHist/}+${session.loger.getId()}">记录</a>
     </nav>
@@ -210,12 +174,22 @@
                     <p>&nbsp;&nbsp;记录管理</p>
                 </a>
             </li>
+            <li class="nav-item" th:class="${activeUri=='/question/toAddOneQuestion'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/question/toAddOneQuestion}">
+                    <svg t="1623830069273" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3236" width="20px" height="20px"><path d="M546.133333 477.866667h136.533334v68.266666h-136.533334v136.533334h-68.266666v-136.533334h-136.533334v-68.266666h136.533334v-136.533334h68.266666v136.533334z m-34.133333 341.333333a307.2 307.2 0 1 0 0-614.4 307.2 307.2 0 0 0 0 614.4z m0 68.266667C304.64 887.466667 136.533333 719.36 136.533333 512S304.64 136.533333 512 136.533333s375.466667 168.106667 375.466667 375.466667-168.106667 375.466667-375.466667 375.466667z" p-id="3237"></path></svg>
+                    <p>&nbsp;&nbsp;习题添加</p>
+                </a>
+            </li>
             <li class="nav-item" th:class="${activeUri=='/question/toAddQuestion'?'nav-item active':'nav-item'}">
                 <a class="nav-link" href="#" th:href="@{/question/toAddQuestion}">
-                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20px" height="20px">
-                        <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"></path>
-                    </svg>
+                    <svg t="1623830695513" class="icon" viewBox="0 0 1026 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1744" width="20px" height="20px"><path d="M361.893527 444.816796a33.988303 33.988303 0 0 0-48.115971 0 33.988303 33.988303 0 0 0 0 48.115971l200.141964 200.141964h-480.135966c-18.939265 0-33.783554 14.332417-33.783554 33.271682s15.356161 34.295426 34.295426 34.295427h484.742814l-205.260684 205.260684a33.988303 33.988303 0 0 0 0 48.115971c13.308673 13.308673 34.807298 13.308673 48.115971 0l260.542864-260.542864c13.308673-13.308673 13.308673-34.807298 0-48.115971l-260.542864-260.542864z" p-id="1745"></path><path d="M945.939515 0h-866.087478c-44.020995 0-79.852037 35.831042-79.852037 79.852037v262.07848a34.295426 34.295426 0 0 0 68.590852 0v-220.104973c0-29.176706 23.034241-52.210947 52.210948-52.210948h783.164208c29.176706 0 52.210947 23.034241 52.210948 52.210948v781.11672c0 29.176706-23.034241 52.210947-52.210948 52.210948h-197.070732c-9.213697 0-17.915521 3.583104-24.569857 10.23744-6.142464 6.654336-9.725569 14.844289-9.213697 24.057986 0 18.939265 15.356161 34.295426 34.295426 34.295426h238.532367c44.020995 0 79.852037-35.831042 79.852037-79.852037V79.852037c0-44.020995-35.831042-79.852037-79.852037-79.852037z" p-id="1746"></path></svg>
                     <p>&nbsp;&nbsp;习题导入</p>
+                </a>
+            </li>
+            <li class="nav-item" th:class="${activeUri=='/question/manageQuestion'?'nav-item active':'nav-item'}">
+                <a class="nav-link" href="#" th:href="@{/question/manageQuestion}">
+                    <svg t="1623830533135" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3956" width="20px" height="20px"><path d="M847.644444 1024H150.755556c-48.355556-5.688889-88.177778-42.666667-93.866667-93.866667V93.866667C62.577778 45.511111 102.4 5.688889 150.755556 0h466.488888l327.111112 327.111111v605.866667c-8.533333 48.355556-48.355556 85.333333-96.711112 91.022222z m0-389.688889V327.111111h-184.888888c-25.6-2.844444-45.511111-22.755556-45.511112-45.511111V93.866667H196.266667c-25.6-2.844444-45.511111 17.066667-45.511111 42.666666v748.088889c5.688889 22.755556 22.755556 42.666667 45.511111 45.511111h605.866666c25.6-2.844444 45.511111-22.755556 45.511111-45.511111v-250.311111zM554.666667 824.888889c-17.066667 17.066667-48.355556 17.066667-65.422223 0-17.066667-17.066667-17.066667-48.355556 0-65.422222l233.244445-233.244445c17.066667-17.066667 48.355556-17.066667 65.422222 0 17.066667 17.066667 17.066667 48.355556 0 65.422222L554.666667 824.888889z m76.8-312.888889h-341.333334c-25.6 0-45.511111-19.911111-45.511111-45.511111 0-25.6 19.911111-45.511111 45.511111-45.511111h418.133334c8.533333 0 17.066667 2.844444 22.755555 8.533333-17.066667 5.688889-31.288889 14.222222-42.666666 28.444445l-56.888889 54.044444z m-341.333334 45.511111h292.977778l-93.866667 93.866667h-201.955555c-25.6 0-45.511111-19.911111-45.511111-45.511111 0-25.6 22.755556-48.355556 48.355555-48.355556z m0 139.377778h153.6l-25.6 25.6c-17.066667 17.066667-28.444444 39.822222-34.133333 65.422222h-93.866667c-25.6 0-45.511111-19.911111-45.511111-45.511111-2.844444-22.755556 19.911111-45.511111 45.511111-45.511111z m463.644445 48.355555c0 25.6-19.911111 45.511111-45.511111 45.511112h-17.066667l62.577778-62.577778v17.066666z" fill="#666666" p-id="3957"></path></svg>
+                    <p>&nbsp;&nbsp;题库查看</p>
                 </a>
             </li>
         </ul>

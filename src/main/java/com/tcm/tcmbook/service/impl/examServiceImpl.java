@@ -39,12 +39,10 @@ public class examServiceImpl implements examService {
         List<exam> r=examDao.findAllOrderByRateDesc();
         int min=Math.min(r.size(),5);
         List<exam> res=r.subList(0,min);
-        for(exam e:res){
-            double d=e.getRate();
-            if(d==0||d==1)continue;
-            String s=String.format("%.2f", d);
-            e.setRate(Double.parseDouble(s));
-        }
         return res;
+    }
+    @Override
+    public List<Integer> findScoreByPid(Integer pid){
+        return examDao.findScoreByPid(pid);
     }
 }

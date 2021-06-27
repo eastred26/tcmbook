@@ -1,6 +1,7 @@
 package com.tcm.tcmbook.dao;
 
 import com.tcm.tcmbook.pojo.BookEntryShl;
+import com.tcm.tcmbook.pojo.EntrySLabel;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -16,4 +17,7 @@ public interface BookEntryShlDao {
     List<BookEntryShl> findAll();
     @Select("SELECT * FROM entry_shl WHERE titleId=${tid}")
     List<BookEntryShl> findByTid(Integer tid);
+    @Select("SELECT * FROM shanghanlun_label WHERE recordId=${id}")
+    EntrySLabel findLabelByid(Integer id);
+
 }

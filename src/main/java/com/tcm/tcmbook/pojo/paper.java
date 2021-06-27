@@ -19,4 +19,5 @@ public class paper {
     private Date createTime;
     private String createName;
     private int publish;
+    private String score_aveString;
 }

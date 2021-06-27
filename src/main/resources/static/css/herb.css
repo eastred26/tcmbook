@@ -7,16 +7,13 @@ body {
 }
 .sub-nav{
     margin: 20px 10px;
-    color: #000;
     font-size: 15px;
 }
 .sub-nav a:link{
     text-decoration: none;
-    color: #000;
 }
 .sub-nav a:visited {
     text-decoration: none;
-    color: #000;
 }
 .content-container {
     min-height: 450px;
@@ -32,7 +29,7 @@ body {
     padding: 20px 50px 0;
 }
 .basic-content {
-    padding: 20px 50px;
+    padding: 5px 50px;
     font-size: 15px;
     overflow: hidden;
 }
@@ -42,14 +39,10 @@ body {
     margin: 30px 10px 10px 0;
 }
 .title-icon {
-    display: inline;
-    height: 24px;
+    height: 30px;
     width: 10px;
     background: #169BD5;
     border-radius: 2px;
-    position: absolute;
-    left: 4px;
-    top: 2px;
 }
 .title-name{
     display: inline-block;
@@ -62,9 +55,9 @@ body {
 }
 .box-content {
     color: #000000;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 25px;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-left: 20px;
 }
 .box-content a{
@@ -111,10 +104,9 @@ body {
 }
 .box-content .content-title {
     width:155px;
-    float:left;
-    text-align:left;
     display: inline-block;
     margin-top: 20px;
+    font-size: 20px;
 }
 .origin-content {
     margin-left: 20px;

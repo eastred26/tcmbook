@@ -35,7 +35,7 @@ public class stringclear {
             else if(flag)continue;
             r+=c;
         }
-        return r;
+        return r.trim();
     }
     //在clear基础上去除句末括号
     public static String clear2(String s){
@@ -48,6 +48,21 @@ public class stringclear {
         }
         //System.out.println(res+i);
         return res.substring(0,i);
+    }
+    //在clear基础上去除最前面的【方药】
+    public static String clearfang(String s){
+        int l=s.length();
+        int i=0;
+        int num=0;
+        for(i=0;i<l;i++){
+            if(s.charAt(i)=='【') num++;
+            if(num==2)break;
+        }
+        if(num==2){
+            System.out.println(s);
+            return clear(s.substring(i));
+        }
+        else return "";
     }
 
     //在clear基础上去除所有括号
@@ -79,9 +94,9 @@ public class stringclear {
         int num=0;
         int pos=0;
         for(char c:cs){
-            if(c=='，'||c=='。'||c==',')num++;
+            if(c=='，'||c=='。'||c==','||c==' '||c==':'||c=='：'||c==' ')num++;
             pos++;
-            if(num==2)break;
+            if(num==2||pos>=12)break;
         }
         return s.substring(0,pos-1)+"...";
     }

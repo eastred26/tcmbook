@@ -25,7 +25,7 @@ public class paperServiceImpl implements paperService {
     @Override
     public List<paper> findAll(){return paperDao.findAll();}
     @Override
-    public void AddPaper(paper paper, Integer publish){
+    public int AddPaper(paper paper, Integer publish){
         Random random=new Random();
         Integer pid=paperDao.findMaxId();
         if(pid==null)pid=1;
@@ -37,7 +37,7 @@ public class paperServiceImpl implements paperService {
         int d=paper.getNumd();
         int uid=paper.getCreatorId();
         String createName=userDao.findById(uid).getName();
-        paperDao.AddPaper(pid,paper.getPaperName(),paper.getPaperIntro(),ptype,uid,0,0,0,0,0,new Date(),createName,publish);
+        paperDao.AddPaper(pid,paper.getPaperName(),"",ptype,uid,0,0,0,0,0,new Date(),createName,publish);
         Set<String> setq=new HashSet<>();
         List<String> listq=new LinkedList<>();
         for(int i=1;i<=a;i++){
@@ -115,6 +115,7 @@ public class paperServiceImpl implements paperService {
         for(String qid:listq){
             paper_questionService.AddNew(pid,qid);
         }
+        return pid;
     }
     @Override
     public void EditPaper(Integer pid,String paperName,String paperIntro,String type){paperDao.EditPaper(pid,paperName,paperIntro,type);}
@@ -127,6 +128,10 @@ public class paperServiceImpl implements paperService {
     @Override
     public Integer findNum(){
         return paperDao.findNum();
+    }
+    @Override
+    public void PublishPaper(Integer pid){
+        paperDao.PublishPaper(pid);
     }
     @Override
     public List<paper> findPublish(){

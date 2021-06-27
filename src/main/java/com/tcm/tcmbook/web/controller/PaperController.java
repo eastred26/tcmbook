@@ -23,6 +23,8 @@ public class PaperController {
     @Autowired
     private com.tcm.tcmbook.service.paperService paperService;
     @Autowired
+    private com.tcm.tcmbook.service.examService examService;
+    @Autowired
     private com.tcm.tcmbook.service.recordService recordService;
     @Autowired
     private com.tcm.tcmbook.service.paper_questionService paper_questionService;
@@ -31,6 +33,15 @@ public class PaperController {
     @RequestMapping("/toAddPaper")
     public String toAddPaper(Model model){
         return "paper/paperAdd";
+    }
+
+    @RequestMapping("/toAddPaper1")
+    public String toAddPaper1(Model model,String name,Integer a,Integer b,Integer c){
+        model.addAttribute("name",name);
+        model.addAttribute("a",a);
+        model.addAttribute("b",b);
+        model.addAttribute("c",c);
+        return "paper/paperAdd1";
     }
 
     //试卷去修改页面
@@ -49,8 +60,8 @@ public class PaperController {
     //添加具体操作
     @RequestMapping("/addPaper")
     public String addPaper(paper paper){
-        paperService.AddPaper(paper,0);
-        return "redirect:/exam/toExam";
+        int pid=paperService.AddPaper(paper,0);
+        return "redirect:/paper/toManagerQuestion/"+pid;
     }
     //试卷删除操作
     @RequestMapping("/deletePaper/{id}")
@@ -74,7 +85,30 @@ public class PaperController {
         model.addAttribute("paperIntro",paperName.getPaperIntro());
         model.addAttribute("type",paperName.getType());
         model.addAttribute("questionPapers",questionList);
+        model.addAttribute("a",paperName.getNuma());
+        model.addAttribute("b",paperName.getNumb());
+        model.addAttribute("c",paperName.getNumc());
         return "paper/ManagerQuestion";
+    }
+    //去往试题管理页面-管理员
+    @RequestMapping("/toManagerQuestion2/{id}")
+    public String toManagerQuestion2(@PathVariable("id") Integer id,Model model){
+        List<String> qidList=paper_questionService.findByPid(id);
+        model.addAttribute("qids",qidList);
+        List<question> questionList=new LinkedList<>();
+        for(String qid:qidList){
+            questionList.add(questionService.findById(qid));
+        }
+        model.addAttribute("papid",id);
+        paper paperName=paperService.findById(id);
+        model.addAttribute("paperName",paperName.getPaperName());
+        model.addAttribute("paperIntro",paperName.getPaperIntro());
+        model.addAttribute("type",paperName.getType());
+        model.addAttribute("questionPapers",questionList);
+        model.addAttribute("a",paperName.getNuma());
+        model.addAttribute("b",paperName.getNumb());
+        model.addAttribute("c",paperName.getNumc());
+        return "paper/ManagerQuestion2";
     }
     @RequestMapping("/deleteAllQues/{id}")
     public String deleteAllQues(@PathVariable ("id") Integer papid,String []ques){
@@ -99,7 +133,7 @@ public class PaperController {
         String questionTypeBef=type;
         String bookBef=book;
         String questionTypesRes="";
-        String bookRes="a";
+        String bookRes="s";
         String type0;
         PageHelper.startPage(pageNum,pageSize);//这行是重点，表示从pageNum页开始，每页pageSize条数据
         if(bookBef==null){
@@ -142,16 +176,23 @@ public class PaperController {
     @RequestMapping("/getAllPaper")
     public String toExam(Model model){
         List<paper> papers = paperService.findAll();
+        for(paper p:papers){
+            int pid=p.getId();
+            List<Integer> l=examService.findScoreByPid(pid);
+            int sum=0;
+            for(Integer num:l){
+                sum+=num;
+            }
+            double score_ave=1.0*sum/l.size();
+            java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.00");
+            p.setScore_aveString(""+df.format(score_ave));
+        }
         model.addAttribute("papers",papers);
         return "paper/paperList1";
     }
     @RequestMapping("/publish/{id}")
     public String publish(Model model,@PathVariable("id") Integer paperId){
-        paper paper1 = paperService.findById(paperId);
-        paper1.setCreateTime(new Date());
-        int MaxId=paperService.findMaxId();
-        paper1.setId(MaxId+1);
-        paperService.AddPaper(paper1,1);
+        paperService.PublishPaper(paperId);
         return "redirect:/exam/toExam";
     }
 }

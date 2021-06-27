@@ -85,8 +85,9 @@
                                         <th scope="col">#</th>
                                         <th scope="col">题目</th>
                                         <th scope="col">答案</th>
-                                        <th scope="col">正确人数</th>
-                                        <th scope="col">错误人数</th>
+                                        <th scope="col">正确次数</th>
+                                        <th scope="col">错误次数</th>
+                                        <th scope="col">错误率</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -96,6 +97,7 @@
                                         <td th:text="${que.getAnswer()}"></td>
                                         <td th:text="${que.getNum_right()}"></td>
                                         <td th:text="${que.getNum_false()}"></td>
+                                        <td th:text="${que.getFalseRateString()}"></td>
                                     </tr>
                                     </tbody>
                                 </table>

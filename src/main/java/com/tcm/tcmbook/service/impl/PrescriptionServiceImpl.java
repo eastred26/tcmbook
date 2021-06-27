@@ -1,6 +1,7 @@
 package com.tcm.tcmbook.service.impl;
 
 import com.tcm.tcmbook.dao.PrescriptionDao;
+import com.tcm.tcmbook.pojo.Herb;
 import com.tcm.tcmbook.pojo.Prescription;
 import com.tcm.tcmbook.service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,13 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
     @Override
     public List<Prescription> findAll(){return prescriptionDao.findAll();}
+
+    @Override
+    public void EditP(Integer id,Integer tid){
+        prescriptionDao.EditP(id,tid);
+    }
+    @Override
+    public List<Prescription> findByTid(Integer tid){
+        return prescriptionDao.findByTid(tid);
+    }
 }

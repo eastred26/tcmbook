@@ -16,6 +16,8 @@ public interface examDao {
     Integer findMaxId();
     @Select("SELECT * FROM exam WHERE uid=${uid}")
     List<exam> findByUid(Integer uid);
+    @Select("SELECT score_get FROM exam WHERE pid=${pid}")
+    List<Integer> findScoreByPid(Integer pid);
     @Select("SELECT * FROM exam")
     List<exam>  findAll();
 

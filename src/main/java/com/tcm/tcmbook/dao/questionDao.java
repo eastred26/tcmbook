@@ -1,6 +1,7 @@
 package com.tcm.tcmbook.dao;
 
 import com.tcm.tcmbook.pojo.question;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
@@ -42,6 +43,23 @@ public interface questionDao {
     question findByIdjc(Integer id);
     @Select("SELECT * FROM questionj_d WHERE id=${id}")
     question findByIdjd(Integer id);
+
+    @Select("SELECT max(id) FROM questions_a")
+    Integer findMaxIdsa();
+    @Select("SELECT max(id) FROM questions_b")
+    Integer findMaxIdsb();
+    @Select("SELECT max(id) FROM questions_c")
+    Integer findMaxIdsc();
+    @Select("SELECT max(id) FROM questions_d")
+    Integer findMaxIdsd();
+    @Select("SELECT max(id) FROM questionj_a")
+    Integer findMaxIdja();
+    @Select("SELECT max(id) FROM questionj_b")
+    Integer findMaxIdjb();
+    @Select("SELECT max(id) FROM questionj_c")
+    Integer findMaxIdjc();
+    @Select("SELECT max(id) FROM questionj_d")
+    Integer findMaxIdjd();
 
 
     @Update("UPDATE questions_a set num_right=num_right+1 WHERE id=${id}")
@@ -94,4 +112,34 @@ public interface questionDao {
     List<question> findAllOrderByFalseDescjc();
     @Select("SELECT * FROM questionj_d WHERE num_false!=0  ORDER BY num_false DESC")
     List<question> findAllOrderByFalseDescjd();
+
+    @Insert("INSERT INTO questions_a VALUES(${id},#{type},#{name},#{answerA},#{answerB},#{answerC},#{answerD},#{answerE},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionsa(Integer id, String type, String name, String answerA, String answerB, String answerC, String answerD, String answerE, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+    @Insert("INSERT INTO questions_b VALUES(${id},#{type},#{name},#{answerA},#{answerB},#{answerC},#{answerD},#{answerE},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionsb(Integer id, String type, String name, String answerA, String answerB, String answerC, String answerD, String answerE, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+    @Insert("INSERT INTO questions_c VALUES(${id},#{type},#{name},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionsc(Integer id, String type, String name, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+    @Insert("INSERT INTO questions_d VALUES(${id},#{type},#{name},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionsd(Integer id, String type, String name, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+
+    @Insert("INSERT INTO questionj_a VALUES(${id},#{type},#{name},#{answerA},#{answerB},#{answerC},#{answerD},#{answerE},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionja(Integer id, String type, String name, String answerA, String answerB, String answerC, String answerD, String answerE, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+    @Insert("INSERT INTO questionj_b VALUES(${id},#{type},#{name},#{answerA},#{answerB},#{answerC},#{answerD},#{answerE},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionjb(Integer id, String type, String name, String answerA, String answerB, String answerC, String answerD, String answerE, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+    @Insert("INSERT INTO questionj_c VALUES(${id},#{type},#{name},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionjc(Integer id, String type, String name, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+    @Insert("INSERT INTO questionj_d VALUES(${id},#{type},#{name},#{ans},#{source},${eid},${num_right},${num_false})")
+    void AddQuestionjd(Integer id, String type, String name, String ans,String source,Integer eid,Integer num_right,Integer num_false);
+
+    @Insert("INSERT INTO user_question VALUES(${id},${uid},${qid})")
+    void AddUserQuestion(Integer id, Integer uid,Integer qid);
+
+    @Select("SELECT qid FROM user_question WHERE uid=${uid}")
+    List<Integer> FindUserQuestionByUid(Integer uid);
+
+    @Select("SELECT uid FROM user_question WHERE qid=${qid}")
+    Integer FindUserQuestionByQid(Integer qid);
+
+    @Select("SELECT max(id) FROM user_question")
+    Integer FindUQMaxId();
 }

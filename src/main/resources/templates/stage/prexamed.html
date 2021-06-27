@@ -23,20 +23,6 @@
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-3">
-                <div class="card-user">
-                    <div class="card-body ">
-                        <div class="row">
-                            <div class="col-7 d-flex align-items-center">
-                                <div class="numbers">
-                                    <p class="card-category">用户数</p>
-                                    <h4 class="card-title" th:text="${userNum}"></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
                 <div class="card-question">
                     <div class="card-body ">
                         <div class="row">
@@ -56,7 +42,7 @@
                         <div class="row">
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">共有试卷</p>
+                                    <p class="card-category">公开试卷</p>
                                     <h4 class="card-title" th:text="${papNum}"></h4>
                                 </div>
                             </div>
@@ -64,10 +50,25 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card-user">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">做题数量</p>
+                                    <h4 class="card-title" th:text="${recordNum}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div><br></div>
         <div class="row">
-            <div class="card">
+            <div class="card" style="width: 100%">
                 <div class="card-header ">
                     <h4 class="card-title">测验榜单</h4>
                     <p class="card-category">近期高正确率</p>
@@ -92,7 +93,7 @@
                             <td th:text="${exam.getPname()}"></td>
                             <td th:text="${exam.getScore_all()}"></td>
                             <td th:text="${exam.getScore_get()}"></td>
-                            <td th:text="${exam.getRate()}"></td>
+                            <td th:text="${exam.getTrueRateString()}"></td>
                             <td th:text="${exam.getSubmitTime()}"></td>
                         </tr>
                         </tbody>
@@ -111,7 +112,6 @@
                             <th scope="col">#</th>
                             <th scope="col">题目</th>
                             <th scope="col">正确答案</th>
-                            <th scope="col">易错选项</th>
                             <th scope="col">错误次数</th>
                         </tr>
                         </thead>
@@ -120,7 +120,6 @@
                             <td th:text="${queStat.count}"></td>
                             <td th:text="${que.getAllName()}"></td>
                             <td th:text="${que.getAnswer()}"></td>
-                            <td th:text="${anss.get(queStat.count-1)}"></td>
                             <td th:text="${nums.get(queStat.count-1)}"></td>
                         </tr>
                         </tbody>

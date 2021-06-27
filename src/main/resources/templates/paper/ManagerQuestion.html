@@ -20,52 +20,6 @@
     <!--header-->
     <div th:replace="commons/bar::#examnav(activeUri='/exam/toExam')"></div>
 
-    <div class="main-panel">
-        <div class="content">
-            <div class="container-fluid">
-                <h4 class="page-title">基础信息编辑</h4>
-                <div class="col-md-6">
-                    <form th:action="@{/paper/EditPaper}" method="put">
-                        <input type="hidden" name="pid" th:value="${papid}">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="name">试卷名称</label>
-                                    <input type="text" class="form-control" id="name" name="paperName" th:value="${paperName}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">试卷介绍</label>
-                                    <input type="text" class="form-control" id="intro" name="paperIntro" th:value="${paperIntro}">
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control form-control-sm" name="book">
-                                        <u>
-                                            <option th:text="伤寒论" th:value="s" th:if="'s'==${type}" selected></option>
-                                            <option th:text="伤寒论" th:value="s" th:if="'s'!=${type}"></option>
-                                        </u>
-                                        <u>
-                                            <option th:text="金匮要略" th:value="j" th:if="'j'==${type}" selected></option>
-                                            <option th:text="金匮要略" th:value="j" th:if="'j'!=${type}"></option>
-                                        </u>
-                                        <u>
-                                            <option th:text="综合" th:value="k" th:if="'k'==${type}" selected></option>
-                                            <option th:text="综合" th:value="k" th:if="'k'!=${type}"></option>
-                                        </u>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <div class="card-action">
-                            <button class="btn btn-success" th:text="保存"></button>
-                        </div>
-                        <div class="col-md-2"><a class="btn btn-info" href="#" th:href="@{/exam/toExam}">返回</a> </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--main panel-->
     <div class="main-panel">
         <div class="content">
@@ -75,14 +29,6 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2"><h2><a class="btn btn-primary" href="#" th:href="@{/paper/toAddQuestion/}+${papid}">组题</a></h2> </div>
-                        </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-body">
                                 <table class="table table-head-bg-success">
                                     <thead>
                                     <tr>
@@ -90,6 +36,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">题目</th>
                                         <th scope="col">答案</th>
+                                        <th scope="col">错误率</th>
                                         <th scope="col">操作</th>
                                     </tr>
                                     </thead>
@@ -103,18 +50,28 @@
                                             </label>
                                         </td>
                                         <td th:text="${quepapStat.count}"></td>
-                                        <td th:text="${quepap.getQuestionName()}"></td>
+                                        <td th:text="${quepap.getAllName()}"></td>
                                         <td th:text="${quepap.getAnswer()}"></td>
+                                        <td th:text="${quepap.getFalseRateString()}"></td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" th:href="'/paper/detachQuestion?paperId='+${papid}+'&qpId='+${qids.get(quepapStat.count-1)}">移除</a>
                                         </td>
                                     </tr>
                                                 <button class="btn btn-danger" th:text="一键删除"></button>
+                                        <span>&nbsp;&nbsp;</span>
+                                        <a class="btn btn-primary" href="#" th:href="@{/paper/toAddQuestion/}+${papid}">添加试题</a>
+                                        <span>&nbsp;&nbsp;</span>
+                                        <a class="btn btn-info" href="#" th:href="@{/paper/toAddPaper1}+'?name='+${paperName}+'&a='+${a}+'&b='+${b}+'&c='+${c}">返回上一步</a>
                                     </form>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                    </div>
+                    <div style="padding-left: 1000px;">
+                        <a class="btn btn-danger" href="#" th:href="@{/exam/toExam/}">撤销</a>
+                        <span>&nbsp;&nbsp;</span>
+                        <a class="btn btn btn-success btn-round" th:href="@{/paper/publish/}+${papid}">发布</a>
                     </div>
                 </div>
             </div>

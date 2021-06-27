@@ -20,10 +20,10 @@ $(function(){
     function search(search_type) {
         var search_text = $("#query_input").val();
         if (search_text == '') {
-            $('#tip-modal').modal();
+            //$('#tip-modal').modal();
             return;
         }
-        var href = './search/result?kw=' + search_text + '&type=' + search_type;
+        var href = './search?kw=' + search_text + '&type=' + search_type;
         window.location.href = href;
     }
 });

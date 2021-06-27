@@ -4,10 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class BookEntryJgyl {
     private int id;
     private String yuanwen;
+    private String titleId;
     private String ciyuzhujie;
     private String jingyichanshi;
     private String fangyaopingxi;

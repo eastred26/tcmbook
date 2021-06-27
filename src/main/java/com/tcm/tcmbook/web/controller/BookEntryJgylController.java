@@ -53,6 +53,8 @@ public class BookEntryJgylController {
         model.addAttribute("wenxianxuanlu",stringclear.clear(bookEntry.getWenxianxuanlu()));
         model.addAttribute("linchuangyingyong",stringclear.clear(bookEntry.getLinchuangyingyong()));
         model.addAttribute("xiandaiyanjiu",stringclear.clear(bookEntry.getXiandaiyanjiu()));
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
 
         return "BookEntry_jgyl";
     }
@@ -63,6 +65,9 @@ public class BookEntryJgylController {
         content=stringclear.clear(content);
         model.addAttribute("title","原文");
         model.addAttribute("content",content);
+        model.addAttribute("sidebar","/bookEntryJ/yuanwen");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "contentj";
     }
     @RequestMapping("/ciyuzhujie/{id}")
@@ -72,6 +77,9 @@ public class BookEntryJgylController {
         content=stringclear.clear(content);
         model.addAttribute("title","词语注解");
         model.addAttribute("content",content);
+        model.addAttribute("sidebar","/bookEntryJ/ciyuzhujie");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "contentj";
     }
     @RequestMapping("/jingyichanshi/{id}")
@@ -81,6 +89,9 @@ public class BookEntryJgylController {
         content=stringclear.clear(content);
         model.addAttribute("title","经义阐释");
         model.addAttribute("content",content);
+        model.addAttribute("sidebar","/bookEntryJ/jingyichanshi");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "contentj";
     }
     @RequestMapping("/fangyaopingxi/{id}")
@@ -90,6 +101,9 @@ public class BookEntryJgylController {
         content=stringclear.clear(content);
         model.addAttribute("title","方药评析");
         model.addAttribute("content",content);
+        model.addAttribute("sidebar","/bookEntryJ/fangyaopingxi");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "contentj";
     }
     @RequestMapping("/fangyaolink/{id}")
@@ -106,6 +120,9 @@ public class BookEntryJgylController {
             }
             model.addAttribute("fangyao_ids",fangyao_ids);
         }
+        model.addAttribute("sidebar","/bookEntryJ/fangyaolink");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "fangyaolinkj";
     }
     @RequestMapping("/wenxianxuanlu/{id}")
@@ -115,6 +132,9 @@ public class BookEntryJgylController {
         content=stringclear.clear(content);
         model.addAttribute("title","文献选录");
         model.addAttribute("content",content);
+        model.addAttribute("sidebar","/bookEntryJ/wenxianxuanlu");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "contentj";
     }
     @RequestMapping("/linchuangyingyong/{id}")
@@ -124,6 +144,9 @@ public class BookEntryJgylController {
         content=stringclear.clear(content);
         model.addAttribute("title","临床应用");
         model.addAttribute("content",content);
+        model.addAttribute("sidebar","/bookEntryJ/linchuangyingyong");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "contentj";
     }
     @RequestMapping("/xiandaiyanjiu/{id}")
@@ -133,13 +156,16 @@ public class BookEntryJgylController {
         content=stringclear.clear(content);
         model.addAttribute("title","现代研究");
         model.addAttribute("content",content);
+        model.addAttribute("sidebar","/bookEntryJ/xiandaiyanjiu");
+        model.addAttribute("link1","./"+(id-1));
+        model.addAttribute("link2","./"+(id+1));
         return "contentj";
     }
     @RequestMapping(value = "/graph/{id}")
     public String graph(@PathVariable Integer id, Model model){
         model.addAttribute("eid",id);
         model.addAttribute("type","J");
-        return "entryGraph";
+        return "entryGraphJ";
     }
 
     //graph是请求节点的子项，并添加进map中
@@ -161,27 +187,26 @@ public class BookEntryJgylController {
             pos++;
             if(num==2)break;
         }
-        name=name.substring(0,pos);
-
+        String name1=name.substring(0,pos);
         String ids="j"+id;
-        GNode gNode = new GNode(ids, name,"j",false);
+        GNode gNode = new GNode(ids, name1,stringclear.clear3(name),"j",false);
         NodeList.add(gNode);
         String fangyaoss=entry.getFangyao_id();
         if(fangyaoss.isEmpty())return map;
         String[] fangyaos=fangyaoss.split(";");
         for(String s:fangyaos){
             Prescription p=prescriptionService.getById(Integer.parseInt(s));
-            String pids="p"+p.getId();
+            String pids="p"+p.getId()+"_"+ids;;
             String pname=p.getFangMing();
             String[] herbs=p.getHerbs().split(";");
 
-            GNode pNode = new GNode(pids, pname,"p",false);
+            GNode pNode = new GNode(pids, pname,"","p",true);
             GEdge gLink1 = new GEdge("jp"+pids+ids, ids,pids);
             for(String herb:herbs){
                 int hid=Integer.parseInt(herb);
                 String hname=herbService.getNameById(hid);
                 String hids="h"+hid+"_"+pids;
-                GNode hNode = new GNode(hids, hname,"h",false);
+                GNode hNode = new GNode(hids, hname,"","h",false);
                 GEdge gLink2 = new GEdge("ph"+hids+pids, pids,hids);
                 NodeList.add(hNode);
                 EdgeList.add(gLink2);

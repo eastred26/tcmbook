@@ -17,22 +17,39 @@
     <div th:replace="fragments/header :: header">Header</div>
 </div>
 <div class="container">
-    <div  th:replace="commons/bar::#sidebar_shl"></div>
+    <div th:replace="commons/bar::#sidebar_shl(activeUri=${sidebar})" ></div>
     <div style="width:82%;float:left;right:1px;">
         <div class="main-panel">
-    <div class="sub-nav">
-        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>
-        &gt;条目
-    </div>
-    <div class="detail-head" id="tcm_detail_head" th:text="${title}+':'">
-    </div>
-    <div class="basic-content">
-        <div class="basic-info-box">
-            <div class="box-content">
-                <span class="no-pic" th:text="${content}"></span>
+            <div class="sub-nav">
+                当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>
+                &gt;条目
+            </div>
+             <div class="basic-content">
+                <row>
+                    <a class="btn btn-info" href="#" th:href="${link1}">上一条目</a>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <a class="btn btn-info" href="#" th:href="${link2}">下一条目</a>
+                </row>
             </div>
         </div>
-    </div>
+        <div class="main-panel" style="background: #ADD8E6;width: 900px;" >
+            <div class="basic-content">
+                <div class="basic-info-box">
+                    <div class="box-content">
+                        <span class="no-pic" >【原文】</span>
+                        <span class="no-pic" th:text="${yuanwen}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div class="basic-content">
+                <div class="basic-info-box">
+                    <div class="box-content">
+                        <span class="no-pic" th:text="${content}"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

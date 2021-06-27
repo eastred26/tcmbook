@@ -42,6 +42,10 @@ public class ExamController {
         List<record> records=recordService.findByUidType(id,questionTypesRes);
         List<record> newRs=new LinkedList<>();
         model.addAttribute("questionTypesRes",questionTypesRes);
+        int all=recordService.findNumByUid(id);
+        int numFalse=recordService.findNumFalseByUid(id);
+        double falseRate=1.0*numFalse/all;
+        java.text.DecimalFormat   df   =new   java.text.DecimalFormat("0.00%");
         int i=0;
         Set<String> set=new HashSet<>();
         for(record r:records){
@@ -53,6 +57,8 @@ public class ExamController {
         }
         model.addAttribute("exams",exams);
         model.addAttribute("records",newRs);
+        model.addAttribute("falseRate",df.format(falseRate));
+        model.addAttribute("recordNum",all);
         model.addAttribute("questionNames",questionNames);
         return "exam/history";
     }

@@ -41,8 +41,8 @@
                                         <th scope="col">填空题数量</th>
                                         <th scope="col">问答题数量</th>
                                         <th scope="col">总分</th>
+                                        <th scope="col">平均分</th>
                                         <th scope="col">是否发布</th>
-                                        <th scope="col">创建时间</th>
                                         <th scope="col">操作</th>
                                     </tr>
                                     </thead>
@@ -56,12 +56,12 @@
                                         <td th:text="${pap.getNumc()}"></td>
                                         <td th:text="${pap.getNumd()}"></td>
                                         <td th:text="${pap.getScore_all()}"></td>
+                                        <td th:text="${pap.getScore_aveString()}"></td>
                                         <td th:text="${pap.getPublish()}"></td>
-                                        <td th:text="${pap.getCreateName()}"></td>
                                         <td>
-                                            <a th:if="${session.loger.getPower()==1||pap.getCreatorId()==session.loger.getId()}" class="btn btn btn-primary btn-round" th:href="@{/paper/toManagerQuestion/}+${pap.getId()}">编辑</a>
-                                            <button th:if="${session.loger.getPower()==1||pap.getCreatorId()==session.loger.getId()}" th:attr="del_uri=@{/paper/deletePaper/}+${pap.getId()}" class="btn btn-sm btn-danger deleteBtn">删除</button>
-                                            <a class="btn btn btn-success btn-round" th:href="@{/paper/publish/}+${pap.getId()}">发布</a>
+                                            <a th:if="${session.loger.getPower()==1||pap.getCreatorId()==session.loger.getId()}" class="btn btn btn-primary btn-round" th:href="@{/paper/toManagerQuestion2/}+${pap.getId()}">编辑</a>
+                                            <a th:if="${session.loger.getPower()==1||pap.getCreatorId()==session.loger.getId()}" th:attr="del_uri=@{/paper/deletePaper/}+${pap.getId()}" class="btn btn btn-danger btn-round" style="color:white">删除</a>
+
                                         </td>
                                     </tr>
                                     </tbody>
@@ -77,7 +77,6 @@
     </div>
     </div>
 </div>
-//删除表单
 <form id="deleteClasseForm" method="post">
     <input type="hidden" name="_method" value="delete">
 </form>

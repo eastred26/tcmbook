@@ -26,6 +26,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="col-md-1"></div>
+                <div class="col-md-10 text-warning" th:text="'总分:'+${score_all}+'得分:'+${score_get}"></div>
                 <div>
                     <div>
                         <div class="row form-check" th:each="qb,qbStat:${questions}">

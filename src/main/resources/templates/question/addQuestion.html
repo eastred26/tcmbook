@@ -11,6 +11,7 @@
     <link th:href="@{/css/ready.css}" rel="stylesheet">
     <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/home.css}" rel="stylesheet">
 </head>
 <body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
 <div th:fragment="navbar" class="wrapper" role="navigation">
@@ -39,8 +40,81 @@
                             </div>
                         </form>
                     </div>
+                <p>格式说明：<br>
+                    1.文件格式仅限excel文件<br>
+                    2.可导入2种题型,选择、填空<br>
+                    3.表格不需表头,直接填内容即可<br>
+                    4.题型由2个字母组成,第一个为s/j,代表金匮或伤寒,第二个为a/b/c/d,代表单选、多选、填空、问答
+                    <br>
+                    5.题目来源处,若为原创请填generate
+                    <br>
+                    6.多选答案间不必有空格，填空答案间要加空格
+                    <br>
+                    选择题结构如下：
+                </p>
+                </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-head-bg-success">
+                        <thead>
+                        <tr>
+                            <th>题型</th>
+                            <th>题干</th>
+                            <th>选项A</th>
+                            <th>选项B</th>
+                            <th>选项C</th>
+                            <th>选项D</th>
+                            <th>选项E</th>
+                            <th>答案</th>
+                            <th>来源</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>ja</td>
+                            <td>荆芥生用不具有的功效是</td>
+                            <td>散风</td>
+                            <td>发表</td>
+                            <td>止血</td>
+                            <td>透疹</td>
+                            <td>止痒</td>
+                            <td>C</td>
+                            <th>generate</th>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+            </div>
+        <p>
+           <br><br>
+            填空题结构如下：
+        </p>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-head-bg-success">
+                    <thead>
+                    <tr>
+                        <th>题型</th>
+                        <th>题干</th>
+                        <th>答案</th>
+                        <th>来源</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>jc</td>
+                        <td>荆芥生用不具有的功效是</td>
+                        <td>止血</td>
+                        <th>generate</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
             <div class="col-md-2"></div>
         </div>
     </div>

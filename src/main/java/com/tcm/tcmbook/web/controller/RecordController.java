@@ -1,5 +1,6 @@
 package com.tcm.tcmbook.web.controller;
 
+import com.tcm.tcmbook.pojo.exam;
 import com.tcm.tcmbook.pojo.question;
 import com.tcm.tcmbook.pojo.record;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class RecordController {
             question q=questionService.findById(r.getQid());
             questions.add(q);
         }
+        exam e=examService.findById(id);
+        int score_all=e.getScore_all();
+        int score_get=e.getScore_get();
+        model.addAttribute("score_all",score_all);
+        model.addAttribute("score_get",score_get);
         model.addAttribute("records",records);
         model.addAttribute("questions",questions);
         return "record/showExamHist2";

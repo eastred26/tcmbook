@@ -10,6 +10,7 @@
     <link th:href="@{/datatable/jquery.dataTables.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/herb.css}" rel="stylesheet">
+    <link th:href="@{css/home.css}" rel="stylesheet">
     <title>基于《伤寒论》与《金匮要略》的中医知识服务系统-条目</title>
 </head>
 <body th:style="'background:url('+@{/images/backperson1.png}+') right bottom no-repeat fixed,url('+@{/images/backperson2.png}+') left bottom no-repeat fixed;background-size: 450px;background-color: #f5f5f5;'">
@@ -17,24 +18,103 @@
     <div th:replace="fragments/header :: header">Header</div>
 </div>
 <div class="container">
-    <div th:replace="commons/bar::#sidebar_shl"></div>
+    <div th:replace="commons/bar::#sidebar_shl(activeUri='/bookEntryS/fangyaolink')"></div>
     <div style="width:82%;float:left;right:1px;">
-        <div class="main-panel">
-    <div class="sub-nav">
-        当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>
-        &gt;条目
-    </div>
-    <div class="detail-head" id="tcm_detail_head" th:text="${title}+':'">
-    </div>
-    <div class="basic-content">
-        <div class="basic-info-box">
-            <div class="box-content" id="fangyao_id_box">
-                <span class="no-pic" th:each="fangyao_id : ${fangyao_ids}" >
-                    <a th:href="${fangyao_id.key}" th:text="${fangyao_id.value}"></a>
-                </span>
-            </div>
+        <div class="sub-nav">
+            当前位置：<a href="http://zcy.ckcest.cn/tcm/"> 首页 </a>> <a href="../../home">基于《伤寒论》与《金匮要略》的中医知识服务系统</a>
+            &gt;条目
         </div>
-    </div>
+        <div class="main-panel">
+            <div class="basic-content" th:if="${fangyao_id_flag}==2">
+                <row>
+                    <a class="btn btn-info" href="#" th:href="${link1}">上一条目</a>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <a class="btn btn-info" href="#" th:href="${link2}">下一条目</a>
+                </row>
+                <h4>&nbsp;</h4>
+                <div class="basic-info-box">
+                    <div style="padding-left:20px;">
+                        <span>方剂：</span>
+                        <row th:each="fangyao_id : ${fangyao_ids2}">
+                            <a th:href="'#p'+${fangyao_id.key.pid}" th:text="${fangyao_id.value}"></a>
+                            <span>&nbsp;;&nbsp;</span>
+                        </row>
+                    </div>
+                    <div class="box-content" id="fangyao_id_box2" th:each="fangyao_id : ${fangyao_ids2}">
+                        <span class="title-icon" style="width: 10px;"></span>
+                    <a th:id="'p'+${fangyao_id.key.pid}" th:href="'../../prescription/'+${fangyao_id.key.pid}" th:text="${fangyao_id.value}" style="font-size: 26px;padding: 20px;"></a>
+                        <div th:if="${fangyao_id.key.fangyi}!=''">
+                            <h4>&nbsp;</h4>
+                            <h5>(1)方义</h5>
+                            <span class="no-pic" th:text="${fangyao_id.key.fangyi}"></span>
+                        </div>
+                        <div th:if="${fangyao_id.key.fanglunxuan}!=''">
+                            <h4>&nbsp;</h4>
+                            <h5>(2)方论选</h5>
+                            <span class="no-pic" th:text="${fangyao_id.key.fanglunxuan}"></span>
+                        </div>
+                        <div th:if="${fangyao_id.key.linchuangyingyong}!=''">
+                            <h4>&nbsp;</h4>
+                            <h5>(3)临床应用</h5>
+                            <span class="no-pic" th:text="${fangyao_id.key.linchuangyingyong}"></span>
+                        </div>
+                        <div th:if="${fangyao_id.key.yian}!=''">
+                            <h4>&nbsp;</h4>
+                            <h5>(4)医案</h5>
+                            <span class="no-pic" th:text="${fangyao_id.key.yian}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="basic-content" th:if="${fangyao_id_flag}!=2">
+                <row>
+                    <a class="btn btn-info" href="#" th:href="${link1}">上一条目</a>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <a class="btn btn-info" href="#" th:href="${link2}">下一条目</a>
+                </row>
+                <h4>&nbsp;</h4>
+                <div class="basic-info-box" th:if="${fangyao_id_flag}==1">
+                    <div class="box-content" id="fangyao_id_box" >
+                        <span class="title-icon" style="width: 10px;"></span>
+                    <a th:href="${fangyao_link}" th:text="${fangyao_name}" style="font-size: 26px;padding: 20px;"></a>
+                        <div th:if="${fangyao}!=''">
+                            <h4>&nbsp;</h4>
+                            <h5>(1)方义</h5>
+                            <span class="no-pic" th:text="${fangyao}"></span>
+                        </div>
+                        <div th:if="${fanglunxuan}!=''">
+                            <h4>&nbsp;</h4>
+                            <h5>(2)方论选</h5>
+                            <span class="no-pic" th:text="${fanglunxuan}"></span>
+                        </div>
+                        <div th:if="${linchuangyingyong}!=''">
+                            <h4>&nbsp;</h4>
+                            <h5>(3)临床应用</h5>
+                            <span class="no-pic" th:text="${linchuangyingyong}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="basic-content">
+                <div class="basic-info-box">
+                    <div class="box-content" id="dianping_box" th:if="${dianping}!=''">
+                        <span class="title-icon" style="width: 10px;"></span>
+                        <div class="content-title" >【点评】</div>
+                        <span class="no-pic" id="dianping_content" th:text="${dianping}"></span>
+                    </div>
+
+                    <div class="box-content" id="anyu_box" th:if="${anyu}!=''">
+                        <span class="title-icon" style="width: 10px;"></span>
+                        <div class="content-title">【按语】</div>
+                        <span class="no-pic" id="anyu_content" th:text="${anyu}"></span>
+                    </div>
+                    <div class="box-content" id="xiandaiyanjiu_box" th:if="${xiandaiyanjiu}!=''">
+                        <span class="title-icon" style="width: 10px;"></span>
+                        <div class="content-title">【现代研究】</div>
+                        <span class="no-pic" id="xiandaiyanjiu_content" th:text="${xiandaiyanjiu}"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -4,10 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class BookEntryShl {
     private int id;
     private String title;
+    private String titleId;
     private String yuanwen;
     private String cijie;
     private String tiyao;
@@ -23,4 +23,5 @@ public class BookEntryShl {
     private String anyu;
     private String xiandaiyanjiu;
     private String xiaojie;
+    private int label_id;
 }

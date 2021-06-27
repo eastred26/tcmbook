@@ -11,4 +11,6 @@ public interface questionService {
     void AddFalse(String qid);
     List<question> findByBookType(String type);
     List<question> findAllOrderByFalseDesc(String type);
+    void AddUserQuestion(Integer uid,Integer qid);
+    List<Integer> FindUserQuestion(Integer uid);
 }

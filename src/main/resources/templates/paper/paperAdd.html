@@ -34,10 +34,7 @@
                                 <input type="text" class="form-control" id="name" name="paperName" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">试卷介绍</label>
-                                <input type="text" class="form-control" id="intro" name="paperIntro" value="">
-                            </div>
-                            <div class="form-group">
+                                <label for="name">出题范围</label>
                                 <select class="form-control form-control-sm" name="type">
                                     <u>
                                         <option th:text="伤寒论" th:value="s"  selected></option>
@@ -66,7 +63,7 @@
                         </div>
                     </div>
                         <div class="card-action">
-                            <button class="btn btn-success" th:text="添加"></button>
+                            <button class="btn btn-success" th:text="下一步"></button>
                             <a class="btn btn-info" href="#" th:href="@{/exam/toExam}">返回</a>
                         </div>
                     </form>

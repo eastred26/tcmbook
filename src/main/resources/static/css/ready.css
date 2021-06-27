@@ -2061,6 +2061,7 @@ body {
   bottom: 0;
   left: 0;
   width: 150px;
+  height: 880px;
   display: block;
   z-index: 1;
   color: #ffffff;
@@ -2221,6 +2222,18 @@ body {
   background: #f2f3f8;
 }
 .main-panel .content {
+  padding: 30px 15px;
+  min-height: calc(100% - 123px);
+  margin-top: 25px;
+}
+
+.main-panel2 {
+  position: relative;
+  min-height: 100%;
+  float: left;
+  background: #ADD8E6;
+}
+.main-panel2 .content {
   padding: 30px 15px;
   min-height: calc(100% - 123px);
   margin-top: 25px;
@@ -6102,11 +6115,11 @@ body {
     position: fixed;
     left: 0 !important;
     right: 0;
-    -webkit-transform: translate3d(-270px, 0, 0);
-    -moz-transform: translate3d(-270px, 0, 0);
-    -o-transform: translate3d(-270px, 0, 0);
-    -ms-transform: translate3d(-270px, 0, 0);
-    transform: translate3d(-270px, 0, 0) !important;
+    -webkit-transform: translate3d(-50px, 0, 0);
+    -moz-transform: translate3d(-50px, 0, 0);
+    -o-transform: translate3d(-50px, 0, 0);
+    -ms-transform: translate3d(-50px, 0, 0);
+    transform: translate3d(-50px, 0, 0) !important;
     transition: all .5s;
   }
 
@@ -6132,6 +6145,13 @@ body {
     -ms-transform: translate3d(260px, 0, 0);
     transform: translate3d(260px, 0, 0) !important;
   }
+  .nav_open .main-panel2, .nav_open .main-header {
+    -webkit-transform: translate3d(260px, 0, 0);
+    -moz-transform: translate3d(260px, 0, 0);
+    -o-transform: translate3d(260px, 0, 0);
+    -ms-transform: translate3d(260px, 0, 0);
+    transform: translate3d(260px, 0, 0) !important;
+  }
 
   .main-header {
     transition: all .5s;
@@ -6142,6 +6162,14 @@ body {
     transition: all .5s;
   }
   .main-panel .content {
+    padding: 30px 10px;
+  }
+
+  .main-panel2 {
+    width: 100%;
+    transition: all .5s;
+  }
+  .main-panel2 .content {
     padding: 30px 10px;
   }
 
@@ -6191,6 +6219,13 @@ body {
   }
 
   .nav_open.topbar_open .main-panel {
+    transform: translate3d(260px, 125px, 0) !important;
+  }
+  .topbar_open .main-panel2 {
+    transform: translate3d(0, 125px, 0) !important;
+  }
+
+  .nav_open.topbar_open .main-panel2 {
     transform: translate3d(260px, 125px, 0) !important;
   }
 

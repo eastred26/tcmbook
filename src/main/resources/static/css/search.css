@@ -121,7 +121,7 @@ a:active {
     padding-left: 50px;
     font-weight: bold;
     font-size: 16px;
-    color: #0066CC;
+    color: #000001;
     margin-bottom: -10px;
     display: inline-block;
 }
@@ -132,7 +132,6 @@ a:active {
     box-shadow: 0 0 0 1px rgba(0,0,0,.1);
     padding: 10px;
     /*border-radius: 5px;*/
-    width: 1000px;
     margin: 20px auto;
     position: relative;
 }

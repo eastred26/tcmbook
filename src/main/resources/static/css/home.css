@@ -17,7 +17,7 @@ a:active {
     color: #fff;
 }
 .content-container {
-    height: 5100px;
+    height: 6000px;
     width: 1200px;
     margin: 0 auto;
     padding-bottom: 200px;
@@ -39,7 +39,7 @@ a:active {
 .sub-nav a{
     margin: 20px 0;
     text-decoration: none;
-    color: #000;
+    color: #007BFF;
 }
 #query_input{
     width:500px;
@@ -147,7 +147,7 @@ a:active {
     padding-left: 50px;
     font-weight: bold;
     font-size: 16px;
-    color: #0066CC;
+    color: #000001;
     margin-bottom: -10px;
     display: inline-block;
 }
@@ -179,7 +179,6 @@ a:active {
     box-shadow: 0 0 0 1px rgba(0,0,0,.1);
     padding: 10px;
     /*border-radius: 5px;*/
-    width: 1000px;
     margin: 20px auto;
     position: relative;
 }
@@ -244,4 +243,33 @@ input[type=radio]:checked:after{
 
 .nav .nav-item {
     text-align: center;
+}
+
+.cbox-main {
+    overflow: hidden;
+    width: 960px;
+    margin: 30px auto 50px;
+}
+.cbox-main .cbox-item {
+    width: 50%;
+    height: 80px;
+    float: left;
+    margin-top: 20px;
+
+}
+.cbox-main .cbox-detail {
+    display: inline-block;
+    vertical-align: top;
+    /*width: 400px;*/
+    margin-left: 10px;
+    width: 360px;
+}
+.cbox-main .cbox-detail .detail-title {
+    font-size: 20px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+.cbox-main .cbox-detail .detail-intro {
+    font-size: 14px;
+    line-height: 20px;
 }

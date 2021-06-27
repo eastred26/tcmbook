@@ -28,6 +28,8 @@ public interface paperDao {
     void EditPaper(Integer pid, String paperName, String paperIntro, String type);
     @Update("UPDATE paper SET numa=${numa}, numb=${numb} ,numc=${numc},numd=${numd},score_all=${numa}+${numb}+${numc}+${numd} WHERE id=${pid}")
     void EditPaperNum(Integer pid, Integer numa, Integer numb, Integer numc, Integer numd);
+    @Update("UPDATE paper SET publish=1 WHERE id=${pid}")
+    void PublishPaper(Integer pid);
     @Insert("INSERT INTO paper VALUES (${id},#{paperName},#{paperIntro},#{type},${creatorId},${numa},${numb},${numc},${numd},${score_all},#{createTime},#{createName},${publish})")
     void AddPaper(Integer id, String paperName, String paperIntro, String type, Integer creatorId, Integer numa, Integer numb, Integer numc, Integer numd, Integer score_all, Date createTime, String createName, Integer publish);
     @Delete("DELETE FROM paper WHERE id=${pid}")

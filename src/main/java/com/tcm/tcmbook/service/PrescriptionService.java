@@ -8,4 +8,6 @@ public interface PrescriptionService {
     Prescription getById(Integer id);
     String getNameById(Integer id);
     List<Prescription> findAll();
+    void EditP(Integer id,Integer tid);
+    List<Prescription> findByTid(Integer tid);
 }

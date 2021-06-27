@@ -4,6 +4,7 @@ import com.tcm.tcmbook.dao.BookEntryShlDao;
 import com.tcm.tcmbook.dao.BookEntryShlDao;
 import com.tcm.tcmbook.pojo.BookEntryJgyl;
 import com.tcm.tcmbook.pojo.BookEntryShl;
+import com.tcm.tcmbook.pojo.EntrySLabel;
 import com.tcm.tcmbook.service.BookEntryShlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,8 @@ public class BookEntryShlServiceImpl implements BookEntryShlService {
     }
     @Override
     public List<BookEntryShl> findByTid(Integer tid){return bookEntryDao.findByTid(tid);}
+    @Override
+    public EntrySLabel findLabelByid(Integer id){
+        return bookEntryDao.findLabelByid(id);
+    }
 }
